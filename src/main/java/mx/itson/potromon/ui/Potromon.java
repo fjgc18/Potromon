@@ -2,15 +2,15 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  */
 
-package mx.itson.potromon;
-
+package mx.itson.potromon.ui;
+import mx.itson.potromon.entidades.Potrodex;
 /**
  *
  * @author Thinkpad
  */
 public class Potromon {
 
-    public static void main(String[] args) {
-        System.out.println("Hello World!");
-    }
+   /* public static void main(String[] args) {
+        Potrodex.getAll();
+    }*/
 }
