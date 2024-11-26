@@ -10,7 +10,6 @@ import mx.itson.potromon.entidades.Potrodex;
  */
 public class Potromon {
 
-   /* public static void main(String[] args) {
-        Potrodex.getAll();
-    }*/
+   public static void main(String[] args) {
+        Potrodex.getAll();}
 }

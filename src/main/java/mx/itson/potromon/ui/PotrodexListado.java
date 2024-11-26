@@ -4,6 +4,10 @@
  */
 package mx.itson.potromon.ui;
 
+import java.util.List;
+import javax.swing.table.DefaultTableModel;
+import mx.itson.potromon.entidades.Potrodex;
+
 /**
  *
  * @author emili
@@ -27,7 +31,7 @@ public class PotrodexListado extends javax.swing.JFrame {
     private void initComponents() {
 
         jScrollPane1 = new javax.swing.JScrollPane();
-        jTable1 = new javax.swing.JTable();
+        tblPotromones = new javax.swing.JTable();
         jLabel1 = new javax.swing.JLabel();
         btnAgregar = new javax.swing.JButton();
         btnEditar = new javax.swing.JButton();
@@ -36,18 +40,18 @@ public class PotrodexListado extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
-        jTable1.setModel(new javax.swing.table.DefaultTableModel(
+        tblPotromones.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null}
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null}
             },
             new String [] {
-                "Nombre", "Descripcion", "Poderes", "Puntaje"
+                "ID", "Nombre", "Descripcion", "Poderes", "Puntaje"
             }
         ));
-        jScrollPane1.setViewportView(jTable1);
+        jScrollPane1.setViewportView(tblPotromones);
 
         jLabel1.setFont(new java.awt.Font("Rockwell Extra Bold", 0, 48)); // NOI18N
         jLabel1.setText("POTRODEX");
@@ -115,7 +119,28 @@ public class PotrodexListado extends javax.swing.JFrame {
     private void btnAgregarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAgregarActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_btnAgregarActionPerformed
-
+  private void formWindowOpened(java.awt.event.WindowEvent evt) {                                  
+        cargarTable();
+        tblPotromones.removeColumn(tblPotromones.getColumnModel().getColumn(0));
+    }   
+    
+    
+    private void cargarTable(){
+    List<Potrodex> potrodex = Potrodex.getAll();
+    DefaultTableModel modeloTable = (DefaultTableModel) tblPotromones.getModel();
+    modeloTable.setRowCount(0);
+    for(Potrodex p : potrodex) {
+        modeloTable.addRow(new Object[] {
+        p.getId_potromon(),
+        p.getNombrePotromon(),
+        p.getDescripcion(),
+        p.getPoderes(),
+        p.getPuntaje()
+        });
+        
+    }
+}
+    
     /**
      * @param args the command line arguments
      */
@@ -158,6 +183,6 @@ public class PotrodexListado extends javax.swing.JFrame {
     private javax.swing.JButton btnShow;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JTable jTable1;
+    private javax.swing.JTable tblPotromones;
     // End of variables declaration//GEN-END:variables
 }
