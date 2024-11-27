@@ -5,8 +5,11 @@
 package mx.itson.potromon.ui;
 
 import java.util.List;
+import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 import mx.itson.potromon.entidades.Potrodex;
+import java.sql.PreparedStatement;
+import mx.itson.potromon.ui.PotrodexForm;
 
 /**
  *
@@ -64,8 +67,18 @@ public class PotrodexListado extends javax.swing.JFrame {
         });
 
         btnEditar.setText("Editar");
+        btnEditar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnEditarActionPerformed(evt);
+            }
+        });
 
         btnEliminar.setText("Eliminar");
+        btnEliminar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnEliminarActionPerformed(evt);
+            }
+        });
 
         btnShow.setText("Show Potromon");
 
@@ -75,7 +88,7 @@ public class PotrodexListado extends javax.swing.JFrame {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 456, Short.MAX_VALUE)
+                .addComponent(jScrollPane1)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
                         .addGap(37, 37, 37)
@@ -117,8 +130,48 @@ public class PotrodexListado extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnAgregarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAgregarActionPerformed
-        // TODO add your handling code here:
+        PotrodexForm form = new PotrodexForm(this, true);
+        form.setVisible(true);
+
     }//GEN-LAST:event_btnAgregarActionPerformed
+
+    private void btnEliminarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEliminarActionPerformed
+        int renglon =tblPotromones.getSelectedRow();
+        int idPotrodex = Integer.parseInt(tblPotromones.getModel().getValueAt(renglon, 0).toString());
+        
+        
+       if  (JOptionPane.showConfirmDialog(this,
+                "Esta seguro que desea eliminar el registro?",
+                "Eliminar registro",
+                JOptionPane.YES_NO_OPTION) == JOptionPane.YES_OPTION){
+                 if (Potrodex.delete(idPotrodex)){
+                    JOptionPane.showMessageDialog(this,
+                      "El registro se elimino con exito",
+                      "Registro eliminado con exito",
+                           JOptionPane.INFORMATION_MESSAGE);
+                   cargarTable();
+               } else {
+                     JOptionPane.showMessageDialog(this,
+                           "Ocurrio un errro al eliminar el registro",
+                            "ERROR",
+                            JOptionPane.ERROR_MESSAGE);
+                                                       
+        }
+                                      
+      }
+    }//GEN-LAST:event_btnEliminarActionPerformed
+
+    private void btnEditarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEditarActionPerformed
+       int renglon = tblPotromones.getSelectedRow();
+        int idPotrodex = Integer.parseInt(tblPotromones.getModel().getValueAt(renglon, 0).toString());
+        
+       PotrodexForm form = new PotrodexForm(this, true);
+        form.setVisible(true);
+        
+        cargarTable();
+        
+                         
+    }//GEN-LAST:event_btnEditarActionPerformed
   private void formWindowOpened(java.awt.event.WindowEvent evt) {                                  
         cargarTable();
         tblPotromones.removeColumn(tblPotromones.getColumnModel().getColumn(0));

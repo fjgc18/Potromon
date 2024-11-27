@@ -71,6 +71,107 @@ public class Potrodex {
       return p;
            
     }
+        
+            
+            
+  /**
+  * Guarda un registro de potrodex en la base de datos
+  * @param nombrePotromon valor del nombre del potrodex
+  * @param descripcion valor de la descripcion del potroex
+  * @param poderes valor de los  poderes del potrodex
+  * @param puntaje valor del puntaje del potrodex
+  * @return true so se guardo exitosamente; de lo contrario, false.
+  */          
+  public static boolean save(String nombrePotromon, String descripcion, String poderes, int puntaje) {
+       boolean resultado = false;
+       
+        
+        try {
+                Connection conexion = Conexion.obtener();
+                String consulta = "INSERT INTO potrodex (nombrePotromon, descripcion, poderes, puntaje) VALUES (?,?,?,?)";
+                PreparedStatement statement = conexion.prepareStatement(consulta);
+                statement.setString(1, nombrePotromon);
+                statement.setString(2, descripcion);
+                statement.setString(3, poderes);
+                statement.setInt(4, puntaje);
+                
+                statement.execute();
+                resultado = statement.getUpdateCount() == 1;
+                conexion.close();
+                
+        }catch(Exception ex){
+           System.err.println("Ocurrio un error: " + ex.getMessage());
+        }
+           return resultado;
+    }          
+            
+    /**
+     * Elimina un potrodex de la base de datos.
+     * @param id_potromon El ID del potrodex a eliminar.
+     * @return true si el potrodex se eliminó correctamente, false en caso contrario.
+     */
+    public static boolean delete(int id_potromon) {
+       boolean resultado = false;
+       
+        
+        try {
+                Connection conexion = Conexion.obtener();
+                String consulta = "DELETE FROM potrodex WHERE id = ?";
+                PreparedStatement statement = conexion.prepareStatement(consulta);
+                statement.setInt(1, id_potromon);
+                
+                statement.execute();
+                resultado = statement.getUpdateCount() == 1;
+                conexion.close();
+                
+        }catch(Exception ex){
+           System.err.println("Ocurrio un error: " + ex.getMessage());
+        }
+           return resultado;
+    }    
+          
+    /**
+     * Actualiza los datos de un potrodex en la base de datos.
+     * @param id_potromon El ID del potrodex a actualizar.
+     * @param nombrePotromon El nuevo nombre del Potrodex.
+     * @param  descripcion la nueva descripcion del Potrodex
+     * @param puntaje el nuevo puntaje del Potrodex
+     * @return true si el responsable se actualizó correctamente, false en caso contrario.
+     */
+ public static boolean edit(int id_potromon, String nombrePotromon, String descripcion, int puntaje) {
+    boolean resultado = false;
+    
+    try {
+        Connection conexion = Conexion.obtener();
+        String consulta = "UPDATE potrodex SET nombrePotromon = ?, descripcion = ?, puntaje = ? WHERE id = ?";
+        PreparedStatement statement = conexion.prepareStatement(consulta);
+        statement.setString(1, nombrePotromon);
+        statement.setString(2, descripcion);
+        statement.setInt(3, puntaje);
+        statement.setInt(4, id_potromon);
+        
+        statement.execute();
+        resultado = statement.getUpdateCount() == 1;
+        conexion.close();
+        
+    } catch (Exception ex) {
+        System.err.println("Ocurrió un error: " + ex.getMessage());
+    }
+    return resultado;
+}
+
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
             
     @Override
     public String toString(){
