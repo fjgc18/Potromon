@@ -9,7 +9,6 @@ import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 import mx.itson.potromon.entidades.Potrodex;
 import java.sql.PreparedStatement;
-import mx.itson.potromon.ui.PotrodexForm;
 
 /**
  *
@@ -130,7 +129,7 @@ public class PotrodexListado extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnAgregarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAgregarActionPerformed
-        PotrodexForm form = new PotrodexForm(this, true);
+        PotrodexForm form = new PotrodexForm(this, true, 0);
         form.setVisible(true);
 
     }//GEN-LAST:event_btnAgregarActionPerformed
@@ -165,7 +164,7 @@ public class PotrodexListado extends javax.swing.JFrame {
        int renglon = tblPotromones.getSelectedRow();
         int idPotrodex = Integer.parseInt(tblPotromones.getModel().getValueAt(renglon, 0).toString());
         
-       PotrodexForm form = new PotrodexForm(this, true);
+       PotrodexForm form = new PotrodexForm(this, true, 0);
         form.setVisible(true);
         
         cargarTable();
