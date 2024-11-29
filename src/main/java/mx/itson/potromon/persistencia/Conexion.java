@@ -11,7 +11,7 @@ import java.sql.DriverManager;
  *
  * @author emili
  */
-public class Conexion {
+public class Conexion {  
         public static Connection obtener(){
         Connection conexion =  null;
         try {

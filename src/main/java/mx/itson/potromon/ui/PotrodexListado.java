@@ -189,7 +189,7 @@ public class PotrodexListado extends javax.swing.JFrame {
         p.getPoderes(),
         p.getPuntaje()
         });
-        
+          
     }
 }
     
@@ -222,6 +222,7 @@ public class PotrodexListado extends javax.swing.JFrame {
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
+            @Override
             public void run() {
                 new PotrodexListado().setVisible(true);
             }
