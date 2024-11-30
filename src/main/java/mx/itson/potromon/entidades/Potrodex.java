@@ -18,7 +18,7 @@ import mx.itson.potromon.persistencia.Conexion;
  */
 public class Potrodex {
     
-    private int id_potromon;
+    private int idPotromon;
     private String nombrePotromon;
     private String descripcion;
     private String poderes;
@@ -37,7 +37,7 @@ public class Potrodex {
            ResultSet rs = statement.executeQuery("Select idPotromon, nombrePotromon, descripcion, poderes, puntaje FROM potrodex");
            while(rs.next()){
                Potrodex p = new Potrodex();
-               p.setId_potromon(rs.getInt(1));
+               p.setIdPotromon(rs.getInt(1));
                p.setNombrePotromon(rs.getString(2));
                p.setDescripcion(rs.getString(3));
                p.setPoderes(rs.getString(4));
@@ -57,19 +57,19 @@ public class Potrodex {
      * @param id_potrodex El ID del Potromon a buscar
      * @return Un objeto Potrodex que representa el Potromon encontrado o null si no se encuentra
      */
-            public static Potrodex getById(int id_potromon) {
+        public static Potrodex getById(int idPotromon) {
         Potrodex p = new Potrodex();
         
         try {
            Connection conexion = Conexion.obtener();
-           String query = "Select idPotromon, nombrePotromon, descripcion, poderes, puntaje FROM potrodex WHERE id = ?";
+           String query = "Select idPotromon, nombrePotromon, descripcion, poderes, puntaje FROM potrodex WHERE idPotromon = ?";
             PreparedStatement statement = conexion.prepareStatement(query);
-            statement.setInt(1, id_potromon);
+            statement.setInt(1, idPotromon);
            
             ResultSet rs = statement.executeQuery();
             
            while(rs.next()){
-               p.setId_potromon(rs.getInt(1));
+               p.setIdPotromon(rs.getInt(1));
                p.setNombrePotromon(rs.getString(2));
                p.setDescripcion(rs.getString(3));
                p.setPoderes(rs.getString(4));
@@ -99,7 +99,7 @@ public class Potrodex {
         
         try {
                 Connection conexion = Conexion.obtener();
-                String consulta = "INSERT INTO potrodex (idPotromon, nombrePotromon, descripcion, poderes, puntaje) VALUES (?,?,?,?,?)";
+                String consulta = "INSERT INTO potrodex (nombrePotromon, descripcion, poderes, puntaje) VALUES (?,?,?,?)";
                 PreparedStatement statement = conexion.prepareStatement(consulta);
                 statement.setString(1, nombrePotromon);
                 statement.setString(2, descripcion);
@@ -121,15 +121,15 @@ public class Potrodex {
      * @param id_potromon El ID del potrodex a eliminar.
      * @return true si el potrodex se eliminó correctamente, false en caso contrario.
      */
-    public static boolean delete(int id_potromon) {
+    public static boolean delete(int idPotromon) {
        boolean resultado = false;
        
         
         try {
                 Connection conexion = Conexion.obtener();
-                String consulta = "DELETE FROM potrodex WHERE id = ?";
+                String consulta = "DELETE FROM potrodex WHERE idPotromon = ?";
                 PreparedStatement statement = conexion.prepareStatement(consulta);
-                statement.setInt(1, id_potromon);
+                statement.setInt(1, idPotromon);
                 
                 statement.execute();
                 resultado = statement.getUpdateCount() == 1;
@@ -149,17 +149,17 @@ public class Potrodex {
      * @param puntaje el nuevo puntaje del Potrodex
      * @return true si el responsable se actualizó correctamente, false en caso contrario.
      */
- public static boolean edit(int id_potromon, String nombrePotromon, String descripcion, String poderes, int puntaje) {
+ public static boolean edit(int idPotromon, String nombrePotromon, String descripcion, String poderes, int puntaje) {
     boolean resultado = false;
     try {
         Connection conexion = Conexion.obtener();
-        String consulta = "UPDATE potrodex SET nombrePotromon = ?, descripcion = ?, poderes = ?, puntaje = ? WHERE id = ?";
+        String consulta = "UPDATE potrodex SET nombrePotromon = ?, descripcion = ?, poderes = ?, puntaje = ? WHERE idPotromon = ?";
         PreparedStatement statement = conexion.prepareStatement(consulta);
         statement.setString(1, nombrePotromon);
         statement.setString(2, descripcion);
         statement.setString(3, poderes);
         statement.setInt(4, puntaje);
-        statement.setInt(5, id_potromon);
+        statement.setInt(5, idPotromon);
         
         statement.execute();
         resultado = statement.getUpdateCount() == 1;
@@ -170,19 +170,6 @@ public class Potrodex {
     }
     return resultado;
 }
-
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            
             
     @Override
     public String toString(){
@@ -190,17 +177,17 @@ public class Potrodex {
     }
     
     /**
-     * @return the id_potromon
+     * @return the idPotromon
      */
-    public int getId_potromon() {
-        return id_potromon;
+    public int getIdPotromon() {
+        return idPotromon;
     }
 
     /**
-     * @param id_potromon the id_potromon to set
+     * @param idPotromon the idPotromon to set
      */
-    public void setId_potromon(int id_potromon) {
-        this.id_potromon = id_potromon;
+    public void setIdPotromon(int idPotromon) {
+        this.idPotromon = idPotromon;
     }
 
     /**

@@ -184,7 +184,7 @@ public class PotrodexListado extends javax.swing.JFrame {
     modeloTable.setRowCount(0);
     for(Potrodex p : potrodex) {
         modeloTable.addRow(new Object[] {
-        p.getId_potromon(),
+        p.getIdPotromon(),
         p.getNombrePotromon(),
         p.getDescripcion(),
         p.getPoderes(),
