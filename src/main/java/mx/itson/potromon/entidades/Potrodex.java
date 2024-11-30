@@ -140,15 +140,15 @@ public class Potrodex {
      */
  public static boolean edit(int id_potromon, String nombrePotromon, String descripcion, int puntaje) {
     boolean resultado = false;
-    
     try {
         Connection conexion = Conexion.obtener();
-        String consulta = "UPDATE potrodex SET nombrePotromon = ?, descripcion = ?, puntaje = ? WHERE id = ?";
+        String consulta = "UPDATE potrodex SET nombrePotromon = ?, descripcion = ?, poderes = ?, puntaje = ? WHERE id = ?";
         PreparedStatement statement = conexion.prepareStatement(consulta);
         statement.setString(1, nombrePotromon);
         statement.setString(2, descripcion);
-        statement.setInt(3, puntaje);
-        statement.setInt(4, id_potromon);
+        statement.setString(3, poderes);
+        statement.setInt(4, puntaje);
+        statement.setInt(5, id_potromon);
         
         statement.execute();
         resultado = statement.getUpdateCount() == 1;
