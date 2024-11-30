@@ -13,7 +13,7 @@ import java.util.List;
 import mx.itson.potromon.persistencia.Conexion;
 
 /**
- *
+ *Clase que representa un Potromon en el sistema
  * @author emili
  */
 public class Potrodex {
@@ -24,7 +24,11 @@ public class Potrodex {
     private String poderes;
     private int puntaje;
     
-    
+    /**
+     * Obtiene todos los Potromones de la base de datos
+     * 
+     * @return Una lista de objetos Potrodex que representan todos los Potromones
+     */
         public static List<Potrodex> getAll(){
        List<Potrodex> potrodex = new ArrayList<>(); 
       try {
@@ -46,6 +50,13 @@ public class Potrodex {
        }   
       return potrodex;
 }
+    
+    /**
+     * Obtiene un Potromon por su ID
+     * 
+     * @param id_potrodex El ID del Potromon a buscar
+     * @return Un objeto Potrodex que representa el Potromon encontrado o null si no se encuentra
+     */
             public static Potrodex getById(int id_potromon) {
         Potrodex p = new Potrodex();
         
