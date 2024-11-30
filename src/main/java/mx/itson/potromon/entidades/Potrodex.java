@@ -34,7 +34,7 @@ public class Potrodex {
       try {
            Connection conexion = Conexion.obtener();
            Statement statement = conexion.createStatement();
-           ResultSet rs = statement.executeQuery("Select id_potromon, nombre_potromon, descripcion, poderes, puntaje FROM potrodex");
+           ResultSet rs = statement.executeQuery("Select idPotromon, nombrePotromon, descripcion, poderes, puntaje FROM potrodex");
            while(rs.next()){
                Potrodex p = new Potrodex();
                p.setId_potromon(rs.getInt(1));
@@ -99,7 +99,7 @@ public class Potrodex {
         
         try {
                 Connection conexion = Conexion.obtener();
-                String consulta = "INSERT INTO potrodex (nombrePotromon, descripcion, poderes, puntaje) VALUES (?,?,?,?)";
+                String consulta = "INSERT INTO potrodex (idPotromon, nombrePotromon, descripcion, poderes, puntaje) VALUES (?,?,?,?,?)";
                 PreparedStatement statement = conexion.prepareStatement(consulta);
                 statement.setString(1, nombrePotromon);
                 statement.setString(2, descripcion);
