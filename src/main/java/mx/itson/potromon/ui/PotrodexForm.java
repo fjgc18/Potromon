@@ -13,7 +13,7 @@ import mx.itson.potromon.entidades.Potrodex;
  */
 public class PotrodexForm extends javax.swing.JDialog {
     
-    private int idPotrodex;
+    int idPotrodex;
     /**
      * Creates new form PotrodexForm
      */
@@ -29,7 +29,7 @@ public class PotrodexForm extends javax.swing.JDialog {
                 txtNombre.setText(potrodex.getNombrePotromon());
                 txtDescripcion.setText(potrodex.getDescripcion());
                 txtPoderes.setText(potrodex.getPoderes());
-                txtPuntuaje.setText(String.valueOf(potrodex.getPuntaje()));
+                txtPuntaje.setText(String.valueOf(potrodex.getPuntaje()));
             }
         }
     }
@@ -53,9 +53,9 @@ public class PotrodexForm extends javax.swing.JDialog {
         txtDescripcion = new java.awt.TextField();
         jLabel3 = new javax.swing.JLabel();
         jLabel4 = new javax.swing.JLabel();
-        jButton1 = new javax.swing.JButton();
+        btnAceptar = new javax.swing.JButton();
         txtPoderes = new java.awt.TextField();
-        txtPuntuaje = new java.awt.TextField();
+        txtPuntaje = new java.awt.TextField();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
@@ -148,20 +148,20 @@ public class PotrodexForm extends javax.swing.JDialog {
         jLabel4.setForeground(new java.awt.Color(0, 0, 0));
         jLabel4.setText("Puntaje:");
 
-        jButton1.setBackground(new java.awt.Color(204, 0, 0));
-        jButton1.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
-        jButton1.setForeground(new java.awt.Color(255, 255, 255));
-        jButton1.setText("Aceptar");
-        jButton1.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        jButton1.addActionListener(new java.awt.event.ActionListener() {
+        btnAceptar.setBackground(new java.awt.Color(204, 0, 0));
+        btnAceptar.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
+        btnAceptar.setForeground(new java.awt.Color(255, 255, 255));
+        btnAceptar.setText("Aceptar");
+        btnAceptar.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        btnAceptar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton1ActionPerformed(evt);
+                btnAceptarActionPerformed(evt);
             }
         });
 
-        txtPuntuaje.addActionListener(new java.awt.event.ActionListener() {
+        txtPuntaje.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                txtPuntuajeActionPerformed(evt);
+                txtPuntajeActionPerformed(evt);
             }
         });
 
@@ -178,12 +178,12 @@ public class PotrodexForm extends javax.swing.JDialog {
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addGap(18, 18, 18)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(txtPuntuaje, javax.swing.GroupLayout.DEFAULT_SIZE, 258, Short.MAX_VALUE)
+                    .addComponent(txtPuntaje, javax.swing.GroupLayout.DEFAULT_SIZE, 258, Short.MAX_VALUE)
                     .addComponent(txtPoderes, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 58, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jButton1)
+                .addComponent(btnAceptar)
                 .addGap(38, 38, 38))
         );
         jPanel1Layout.setVerticalGroup(
@@ -201,8 +201,8 @@ public class PotrodexForm extends javax.swing.JDialog {
                 .addComponent(jLabel4)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(jButton1)
-                    .addComponent(txtPuntuaje, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(btnAceptar)
+                    .addComponent(txtPuntaje, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap(19, Short.MAX_VALUE))
         );
 
@@ -233,61 +233,26 @@ public class PotrodexForm extends javax.swing.JDialog {
         // TODO add your handling code here:
     }//GEN-LAST:event_txtNombreActionPerformed
 
-    private void txtPuntuajeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtPuntuajeActionPerformed
+    private void txtPuntajeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtPuntajeActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_txtPuntuajeActionPerformed
+    }//GEN-LAST:event_txtPuntajeActionPerformed
 
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-       String nombre = txtNombre.getText();
-       String descripcion = txtDescripcion.getText();
-       String poderes = txtPoderes.getText();
-       String puntuajeText = txtPuntuaje.getText();
+    private void btnAceptarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAceptarActionPerformed
+    String nombre = txtNombre.getText();
+    String descripcion = txtDescripcion.getText();
+    String poderes = txtPoderes.getText();
+    int puntaje = Integer.parseInt(txtPuntaje.getText());
+   
+       boolean resultado = this.idPotrodex == 0 ?
+               Potrodex.save(nombre, descripcion, poderes, puntaje):
+               Potrodex.edit(idPotrodex, nombre, descripcion, poderes, puntaje);
+       if(resultado){
+          JOptionPane.showMessageDialog (this,"El registro se guardo correctamente", "Registro guardado",JOptionPane.INFORMATION_MESSAGE);
+       dispose();  
+       }else {
+           JOptionPane.showMessageDialog (this,"El registro tuvo un errro al guardar" , "Error al guardar",JOptionPane.ERROR_MESSAGE);
        
-       if (descripcion.isEmpty() || puntuajeText.isEmpty()) {
-            JOptionPane.showMessageDialog(this, "Por favor, complete todos los campos.", "Error", JOptionPane.ERROR_MESSAGE);
-            return;
-        }
-
-      
-        int puntuaje;
-        try {
-            puntuaje = Integer.parseInt(puntuajeText);
-        } catch (NumberFormatException e) {
-            JOptionPane.showMessageDialog(this, "El orden debe ser un número válido.", "Error", JOptionPane.ERROR_MESSAGE);
-            return;
-        }
-       
-       boolean resultado;
-        if (idPotrodex == 0) {
-         
-            resultado = Potrodex.save(nombre, descripcion, poderes, puntuaje);
-        } else {
-          
-            resultado = Potrodex.save(nombre, descripcion, poderes, puntuaje);
-        }
-
-        if (resultado) {
-            JOptionPane.showMessageDialog(this, "Potromon guardado con éxito.", "Éxito", JOptionPane.INFORMATION_MESSAGE);
-            this.dispose(); 
-        } else {
-            JOptionPane.showMessageDialog(this, "Ocurrió un error al guardar la actividad.", "Error", JOptionPane.ERROR_MESSAGE);
-        }
-        
-        boolean rslt;
-        if (idPotrodex == 0) {
-         
-            rslt = Potrodex.edit(idPotrodex, nombre, descripcion, poderes, puntuaje);
-        } else {
-          
-            rslt = Potrodex.edit(idPotrodex, nombre, descripcion, poderes, puntuaje);
-        }
-
-        if (resultado) {
-            JOptionPane.showMessageDialog(this, "Potromon editado con éxito.", "Éxito", JOptionPane.INFORMATION_MESSAGE);
-            this.dispose(); 
-        } else {
-            JOptionPane.showMessageDialog(this, "Ocurrió un error al editar la actividad.", "Error", JOptionPane.ERROR_MESSAGE);
-        }
+}
         
         
         
@@ -303,7 +268,7 @@ public class PotrodexForm extends javax.swing.JDialog {
         
         
         
-    }//GEN-LAST:event_jButton1ActionPerformed
+    }//GEN-LAST:event_btnAceptarActionPerformed
 
     /**
      * @param args the command line arguments
@@ -348,7 +313,7 @@ public class PotrodexForm extends javax.swing.JDialog {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton jButton1;
+    private javax.swing.JButton btnAceptar;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
@@ -360,6 +325,6 @@ public class PotrodexForm extends javax.swing.JDialog {
     private java.awt.TextField txtDescripcion;
     private java.awt.TextField txtNombre;
     private java.awt.TextField txtPoderes;
-    private java.awt.TextField txtPuntuaje;
+    private java.awt.TextField txtPuntaje;
     // End of variables declaration//GEN-END:variables
 }

@@ -152,18 +152,18 @@ public class Potrodex {
  public static boolean edit(int idPotromon, String nombrePotromon, String descripcion, String poderes, int puntaje) {
     boolean resultado = false;
     try {
-        Connection conexion = Conexion.obtener();
-        String consulta = "UPDATE potrodex SET nombrePotromon = ?, descripcion = ?, poderes = ?, puntaje = ? WHERE idPotromon = ?";
-        PreparedStatement statement = conexion.prepareStatement(consulta);
-        statement.setString(1, nombrePotromon);
-        statement.setString(2, descripcion);
-        statement.setString(3, poderes);
-        statement.setInt(4, puntaje);
-        statement.setInt(5, idPotromon);
-        
-        statement.execute();
-        resultado = statement.getUpdateCount() == 1;
-        conexion.close();
+            Connection conexion = Conexion.obtener();
+            String consulta = "UPDATE potrodex SET nombrePotromon = ?, descripcion = ?, poderes = ?, puntaje = ? WHERE idPotromon = ?";
+            PreparedStatement statement = conexion.prepareStatement(consulta);
+            statement.setString(1, nombrePotromon);
+            statement.setString(2, descripcion);
+            statement.setString(3, poderes);
+            statement.setInt(4, puntaje);
+            statement.setInt(5, idPotromon);
+
+            statement.execute();
+            resultado = statement.getUpdateCount() == 1;
+            conexion.close();
         
     } catch (Exception ex) {
         System.err.println("Ocurrió un error: " + ex.getMessage());
