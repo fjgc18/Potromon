@@ -272,6 +272,37 @@ public class PotrodexForm extends javax.swing.JDialog {
         } else {
             JOptionPane.showMessageDialog(this, "Ocurrió un error al guardar la actividad.", "Error", JOptionPane.ERROR_MESSAGE);
         }
+        
+        boolean rslt;
+        if (idPotrodex == 0) {
+         
+            rslt = Potrodex.edit(idPotrodex, nombre, descripcion, poderes, puntuaje);
+        } else {
+          
+            rslt = Potrodex.edit(idPotrodex, nombre, descripcion, poderes, puntuaje);
+        }
+
+        if (resultado) {
+            JOptionPane.showMessageDialog(this, "Potromon editado con éxito.", "Éxito", JOptionPane.INFORMATION_MESSAGE);
+            this.dispose(); 
+        } else {
+            JOptionPane.showMessageDialog(this, "Ocurrió un error al editar la actividad.", "Error", JOptionPane.ERROR_MESSAGE);
+        }
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
     }//GEN-LAST:event_jButton1ActionPerformed
 
     /**
