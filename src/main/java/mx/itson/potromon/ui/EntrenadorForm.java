@@ -231,16 +231,12 @@ public class EntrenadorForm extends javax.swing.JDialog {
         String alias = txtAlias.getText();
         String origen = txtOrigen.getText();
 
-
         boolean resultado;
         if (idEntrenador == 0) {
-
             resultado = Entrenador.save(nombre, alias, origen);
         } else {
-
             resultado = Entrenador.save(nombre, alias, origen);
         }
-
         if (resultado) {
             JOptionPane.showMessageDialog(this, "Entreandor guardado con éxito.", "Éxito", JOptionPane.INFORMATION_MESSAGE);
             this.dispose();
