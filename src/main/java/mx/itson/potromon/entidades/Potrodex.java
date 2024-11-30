@@ -149,7 +149,7 @@ public class Potrodex {
      * @param puntaje el nuevo puntaje del Potrodex
      * @return true si el responsable se actualizó correctamente, false en caso contrario.
      */
- public static boolean edit(int id_potromon, String nombrePotromon, String descripcion, int puntaje) {
+ public static boolean edit(int id_potromon, String nombrePotromon, String descripcion, String poderes, int puntaje) {
     boolean resultado = false;
     try {
         Connection conexion = Conexion.obtener();
