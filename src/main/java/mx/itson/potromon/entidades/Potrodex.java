@@ -62,7 +62,7 @@ public class Potrodex {
         
         try {
            Connection conexion = Conexion.obtener();
-           String query = "Select id_potromon, nombre_potromon, descripcion, poderes, puntaje FROM potrodex WHERE id = ?";
+           String query = "Select idPotromon, nombrePotromon, descripcion, poderes, puntaje FROM potrodex WHERE id = ?";
             PreparedStatement statement = conexion.prepareStatement(query);
             statement.setInt(1, id_potromon);
            

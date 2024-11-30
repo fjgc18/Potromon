@@ -163,12 +163,12 @@ public class PotrodexListado extends javax.swing.JFrame {
 
     private void btnEditarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEditarActionPerformed
        int renglon = tblPotromones.getSelectedRow();
-        int idPotrodex = Integer.parseInt(tblPotromones.getModel().getValueAt(renglon, 0).toString());
+       int idPotrodex = Integer.parseInt(tblPotromones.getModel().getValueAt(renglon, 0).toString());
         
-       PotrodexForm form = new PotrodexForm(this, true, 0);
-        form.setVisible(true);
+       PotrodexForm form = new PotrodexForm(this, true, idPotrodex);
+       form.setVisible(true);
         
-        cargarTable();
+       cargarTable();
         
                          
     }//GEN-LAST:event_btnEditarActionPerformed
