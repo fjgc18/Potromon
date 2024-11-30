@@ -13,7 +13,8 @@ import java.util.List;
 import mx.itson.potromon.persistencia.Conexion;
 
 /**
- *
+ *Clase que representa a un entrenador de Potromones
+ * Esta clase contiene información sobre el entrenador y los Potromones que entrena
  * @author emili
  */
 public class Entrenador {
@@ -39,6 +40,12 @@ public class Entrenador {
       return entrenadores;
 }   
     
+ /**
+     * Obtiene un entrenador por su ID
+     * 
+     * @param idEntrenador El ID del entrenador a buscar
+     * @return Un objeto Entrenador que representa el entrenador encontrado, o un objeto vacío si no se encuentra
+     */   
  public static Entrenador getById(int idEntrenador) {
         Entrenador e = new Entrenador();
         
@@ -64,11 +71,16 @@ public class Entrenador {
            
     }   
     
-    
+  /**
+     * Guarda un nuevo entrenador en la base de datos
+     * 
+     * @param nombreEntrenador El nombre del entrenador
+     * @param aliasEntrenador El alias del entrenador
+     * @param puebloOrigen El pueblo de origen del entrenador
+     * @return true si la inserción fue exitosa, false en caso contrario
+     */  
   public static boolean save(String nombreEntrenador, String aliasEntrenador, String puebloOrigen) {
        boolean resultado = false;
-       
-        
         try {
                 Connection conexion = Conexion.obtener();
                 String consulta = "INSERT INTO entrenador (nombreEntrenador, aliasEntrenador, puebloOrigen) VALUES (?,?,?)";
@@ -86,11 +98,15 @@ public class Entrenador {
         }
            return resultado;
     }
-    
+
+    /**
+     * Elimina un entrenador de la base de datos
+     * 
+     * @param idEntrenador El ID del entrenador a eliminar
+     * @return true si la eliminación fue exitosa, false en caso contrario
+     */
     public static boolean delete(int idEntrenador) {
        boolean resultado = false;
-       
-        
         try {
                 Connection conexion = Conexion.obtener();
                 String consulta = "DELETE FROM entrenador WHERE idEntrenador = ?";
@@ -106,7 +122,17 @@ public class Entrenador {
         }
            return resultado;
     }
+
     
+    /**
+ * Edita la información de un entrenador en la base de datos
+ * 
+ * @param idEntrenador El ID del entrenador que se desea editar
+ * @param nombreEntrenador El nombre del entrenador
+ * @param aliasEntrenador El alias del entrenador
+ * @param puebloOrigen El pueblo de origen del entrenador
+ * @return true si la actualización fue exitosa, false en caso contrario
+ */
      public static boolean edit(int idEntrenador, String nombreEntrenador, String aliasEntrenador, String puebloOrigen) {
        boolean resultado = false;
        
