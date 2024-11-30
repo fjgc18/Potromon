@@ -28,6 +28,7 @@ public class EntrenadorForm extends javax.swing.JDialog {
             if (entrenador != null) {
                 txtNombre.setText(entrenador.getNombreEntrenador());
                 txtAlias.setText(entrenador.getAliasEntrenador());
+                txtOrigen.setText(entrenador.getPuebloOrigen());
             }
         }
     }
