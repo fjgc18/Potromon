@@ -36,10 +36,10 @@ public class EntrenadorListado extends javax.swing.JFrame {
     modeloTable.setRowCount(0);
     for(Entrenador e : entrenador) {
         modeloTable.addRow(new Object[] {
-        e.getidEntrenador(),
-        e.getnombreEntrenador(),
-        e.getaliasEntrenador(),
-        e.getpuebloOrigen(),
+        e.getIdEntrenador(),
+        e.getNombreEntrenador(),
+        e.getAliasEntrenador(),
+        e.getPuebloOrigen(),
         });
           
     }
