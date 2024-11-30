@@ -21,6 +21,7 @@ public class PotrodexListado extends javax.swing.JFrame {
      */
     public PotrodexListado() {
         initComponents();
+        cargarTable();
     }
 
     /**
