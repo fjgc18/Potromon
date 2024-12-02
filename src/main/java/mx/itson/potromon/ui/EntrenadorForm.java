@@ -1,8 +1,10 @@
+package mx.itson.potromon.ui;
+
 /*
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
  */
-package mx.itson.potromon.ui;
+
 
 import javax.swing.JOptionPane;
 import mx.itson.potromon.entidades.Entrenador;
@@ -53,8 +55,6 @@ public class EntrenadorForm extends javax.swing.JDialog {
         jLabel3 = new javax.swing.JLabel();
         txtOrigen = new java.awt.TextField();
         jButton1 = new javax.swing.JButton();
-
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
         jPanel1.setBackground(new java.awt.Color(255, 255, 255));
 
