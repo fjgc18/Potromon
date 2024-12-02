@@ -13,7 +13,7 @@ import mx.itson.potromon.entidades.Entrenador;
  */
 public class EntrenadorForm extends javax.swing.JDialog {
     
-    private int idEntrenador;
+    int idEntrenador;
 
     /**
      * Creates new form EntrenadorForm
@@ -291,6 +291,9 @@ public class EntrenadorForm extends javax.swing.JDialog {
             }
         });
     }
+    
+    
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButton1;

@@ -3,6 +3,7 @@
  */
 
 package mx.itson.potromon.ui;
+import mx.itson.potromon.entidades.Entrenador;
 import mx.itson.potromon.entidades.Potrodex;
 /**
  *
@@ -11,5 +12,5 @@ import mx.itson.potromon.entidades.Potrodex;
 public class Potromon {
 
    public static void main(String[] args) {
-        Potrodex.getAll();}
+        Entrenador.getAll();}
 }

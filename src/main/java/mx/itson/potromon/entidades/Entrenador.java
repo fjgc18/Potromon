@@ -83,7 +83,7 @@ public class Entrenador {
        boolean resultado = false;
         try {
                 Connection conexion = Conexion.obtener();
-                String consulta = "INSERT INTO entrenador (nombreEntrenador, aliasEntrenador, puebloOrigen) VALUES (?,?,?)";
+                String consulta = "INSERT INTO Entrenador (nombreEntrenador, aliasEntrenador, puebloOrigen) VALUES (?,?,?)";
                 PreparedStatement statement = conexion.prepareStatement(consulta);
                 statement.setString(1, nombreEntrenador);
                 statement.setString(2, aliasEntrenador);
@@ -139,7 +139,7 @@ public class Entrenador {
         
         try {
                 Connection conexion = Conexion.obtener();
-                String consulta = "UPDATE entrenador SET nombreEntrenador = ?, aliasEntrenador = ?, puebloOrigen =? WHERE id = ?";
+                String consulta = "UPDATE entrenador SET nombreEntrenador = ?, aliasEntrenador = ?, puebloOrigen =? WHERE idEntrenador = ?";
                 PreparedStatement statement = conexion.prepareStatement(consulta);
                 statement.setString(1, nombreEntrenador);
                 statement.setString(2, aliasEntrenador);
