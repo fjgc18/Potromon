@@ -166,7 +166,7 @@ public class EntrenadorListado extends javax.swing.JFrame {
         int renglon = tblEntrenadores.getSelectedRow();
         int idEntrenador = Integer.parseInt(tblEntrenadores.getModel().getValueAt(renglon, 0).toString());
 
-        EntrenadorForm form = new EntrenadorForm(this, true, 0);
+        EntrenadorForm form = new EntrenadorForm(this, true, idEntrenador);
         form.setVisible(true);
 
         cargarTable();

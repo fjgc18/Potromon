@@ -54,7 +54,7 @@ public class EntrenadorForm extends javax.swing.JDialog {
         txtAlias = new java.awt.TextField();
         jLabel3 = new javax.swing.JLabel();
         txtOrigen = new java.awt.TextField();
-        jButton1 = new javax.swing.JButton();
+        btnAceptar = new javax.swing.JButton();
 
         jPanel1.setBackground(new java.awt.Color(255, 255, 255));
 
@@ -162,14 +162,14 @@ public class EntrenadorForm extends javax.swing.JDialog {
                 .addContainerGap(13, Short.MAX_VALUE))
         );
 
-        jButton1.setBackground(new java.awt.Color(204, 0, 0));
-        jButton1.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
-        jButton1.setForeground(new java.awt.Color(255, 255, 255));
-        jButton1.setText("Aceptar");
-        jButton1.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        jButton1.addActionListener(new java.awt.event.ActionListener() {
+        btnAceptar.setBackground(new java.awt.Color(204, 0, 0));
+        btnAceptar.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
+        btnAceptar.setForeground(new java.awt.Color(255, 255, 255));
+        btnAceptar.setText("Aceptar");
+        btnAceptar.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        btnAceptar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton1ActionPerformed(evt);
+                btnAceptarActionPerformed(evt);
             }
         });
 
@@ -185,7 +185,7 @@ public class EntrenadorForm extends javax.swing.JDialog {
                 .addContainerGap())
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addGap(239, 239, 239)
-                .addComponent(jButton1)
+                .addComponent(btnAceptar)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
@@ -196,7 +196,7 @@ public class EntrenadorForm extends javax.swing.JDialog {
                 .addGap(30, 30, 30)
                 .addComponent(jPanel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGap(18, 18, 18)
-                .addComponent(jButton1)
+                .addComponent(btnAceptar)
                 .addGap(38, 38, 38))
         );
 
@@ -227,25 +227,22 @@ public class EntrenadorForm extends javax.swing.JDialog {
         // TODO add your handling code here:
     }//GEN-LAST:event_txtAliasActionPerformed
 
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+    private void btnAceptarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAceptarActionPerformed
         String nombre = txtNombre.getText();
         String alias = txtAlias.getText();
         String origen = txtOrigen.getText();
-
-        boolean resultado;
-        if (idEntrenador == 0) {
-            resultado = Entrenador.save(nombre, alias, origen);
-        } else {
-            resultado = Entrenador.save(nombre, alias, origen);
-        }
-        if (resultado) {
-            JOptionPane.showMessageDialog(this, "Entreandor guardado con éxito.", "Éxito", JOptionPane.INFORMATION_MESSAGE);
-            this.dispose();
-        } else {
-            JOptionPane.showMessageDialog(this, "Ocurrió un error al guardar la actividad.", "Error", JOptionPane.ERROR_MESSAGE);
-        }
-    }//GEN-LAST:event_jButton1ActionPerformed
-
+        
+        boolean resultado = this.idEntrenador == 0 ?
+               Entrenador.save(nombre, alias, origen):
+               Entrenador.edit(idEntrenador, nombre, alias, origen);
+       if(resultado){
+          JOptionPane.showMessageDialog (this,"El registro se guardo correctamente", "Registro guardado",JOptionPane.INFORMATION_MESSAGE);
+       dispose();  
+       }else {
+           JOptionPane.showMessageDialog (this,"El registro tuvo un errro al guardar" , "Error al guardar",JOptionPane.ERROR_MESSAGE);
+       
+    }//GEN-LAST:event_btnAceptarActionPerformed
+    }
     private void txtOrigenActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtOrigenActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_txtOrigenActionPerformed
@@ -296,7 +293,7 @@ public class EntrenadorForm extends javax.swing.JDialog {
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton jButton1;
+    private javax.swing.JButton btnAceptar;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
