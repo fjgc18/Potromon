@@ -232,6 +232,7 @@ public class PotrodexListado extends javax.swing.JFrame {
         p.getIdPotromon(),
         p.getNombrePotromon(),
         p.getDescripcion(),
+        p.getPoderes(),
         p.getPuntaje()
         });
           

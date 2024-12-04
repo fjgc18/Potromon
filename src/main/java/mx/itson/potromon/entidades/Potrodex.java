@@ -22,6 +22,7 @@ public class Potrodex {
     private int idPotromon;
     private String nombrePotromon;
     private String descripcion;
+    private String poderes;
     private int puntaje;
     private String rutaImagen;
     private Entrenador entrenador;
@@ -37,18 +38,21 @@ public class Potrodex {
       try {
            Connection conexion = Conexion.obtener();
            Statement statement = conexion.createStatement();
-           ResultSet rs = statement.executeQuery("Select idPotromon, nombrePotromon, descripcion, puntaje, ruta_imagen, idEntrenador FROM potrodex");
+           ResultSet rs = statement.executeQuery("Select idPotromon, nombrePotromon, descripcion, poderes, puntaje, ruta_imagen, idEntrenador FROM potrodex");
            while(rs.next()){
                Potrodex p = new Potrodex();
                p.setIdPotromon(rs.getInt(1));
                p.setNombrePotromon(rs.getString(2));
                p.setDescripcion(rs.getString(3));
-               p.setPuntaje(rs.getInt(4));
-               p.setRutaImagen(rs.getString(5));
-               Entrenador e = Entrenador.getById(rs.getInt(6));
+               p.setPoderes(rs.getString(4));
+               p.setPuntaje(rs.getInt(5));
+               p.setRutaImagen(rs.getString(6));
+               
+               Entrenador e = Entrenador.getById(rs.getInt(7));
                p.setEntrenador(e);
-               //List<Habilidades> habilidades = Habilidades.getList(rs.getInt(8));
-               //p.setHabilidades(habilidades);
+               
+            //List<Habilidades> habilidades = Habilidades.getList(rs.getInt(8));
+            //p.setHabilidades(habilidades);
                
                potrodex.add(p);
            }
@@ -69,7 +73,7 @@ public class Potrodex {
         Potrodex p = new Potrodex();
     try {
         Connection conexion = Conexion.obtener();
-        String query = "SELECT idPotromon, nombrePotromon, descripcion, puntaje, ruta_imagen, idEntrenador FROM potrodex WHERE idPotromon = ?";
+        String query = "SELECT idPotromon, nombrePotromon, descripcion, poderes, puntaje, ruta_imagen, idEntrenador FROM potrodex WHERE idPotromon = ?";
         PreparedStatement statement = conexion.prepareStatement(query);
         statement.setInt(1, idPotromon);
         ResultSet rs = statement.executeQuery();
@@ -77,14 +81,16 @@ public class Potrodex {
             p.setIdPotromon(rs.getInt("idPotromon"));
             p.setNombrePotromon(rs.getString("nombrePotromon"));
             p.setDescripcion(rs.getString("descripcion"));
+            p.setPoderes(rs.getString("poderes"));
             p.setPuntaje(rs.getInt("puntaje"));
             p.setRutaImagen(rs.getString("ruta_imagen"));
+            
             int idEntrenador = rs.getInt("idEntrenador");
             Entrenador entrenador = Entrenador.getById(idEntrenador);
             p.setEntrenador(entrenador); 
         }
     } catch (Exception ex) {
-        System.err.println("Ocurrió un error: " + ex.getMessage());
+        System.err.println("Ocurri贸 un error: " + ex.getMessage());
     }
     return p;
 }
@@ -100,19 +106,20 @@ public class Potrodex {
   * @param puntaje valor del puntaje del potrodex
   * @return true so se guardo exitosamente; de lo contrario, false.
   */          
-  public static boolean save(String nombrePotromon, String descripcion, int puntaje, String rutaImagen, Entrenador entrenador) {
+  public static boolean save(String nombrePotromon, String descripcion, String poderes, int puntaje, String rutaImagen, Entrenador entrenador) {
        boolean resultado = false;
        
         
         try {
                 Connection conexion = Conexion.obtener();
-                String consulta = "INSERT INTO potrodex (nombrePotromon, descripcion, puntaje, ruta_imagen, idEntrenador) VALUES (?,?,?,?,?,?)";
+                String consulta = "INSERT INTO potrodex (nombrePotromon, descripcion, poderes, puntaje, ruta_imagen, idEntrenador) VALUES (?,?,?,?,?,?)";
                 PreparedStatement statement = conexion.prepareStatement(consulta);
                 statement.setString(1, nombrePotromon);
                 statement.setString(2, descripcion);
-                statement.setInt(3, puntaje);
-                statement.setString(4, rutaImagen);
-                statement.setInt(5, entrenador.getIdEntrenador());
+                statement.setString(3, poderes);
+                statement.setInt(4, puntaje);
+                statement.setString(5, rutaImagen);
+                statement.setInt(6, entrenador.getIdEntrenador());
                 
                 statement.execute();
                 resultado = statement.getUpdateCount() == 1;
@@ -127,7 +134,7 @@ public class Potrodex {
     /**
      * Elimina un potrodex de la base de datos.
      * @param id_potromon El ID del potrodex a eliminar.
-     * @return true si el potrodex se eliminó correctamente, false en caso contrario.
+     * @return true si el potrodex se elimin贸 correctamente, false en caso contrario.
      */
     public static boolean delete(int idPotromon) {
        boolean resultado = false;
@@ -155,32 +162,36 @@ public class Potrodex {
      * @param nombrePotromon El nuevo nombre del Potrodex.
      * @param  descripcion la nueva descripcion del Potrodex
      * @param puntaje el nuevo puntaje del Potrodex
-     * @return true si el responsable se actualizó correctamente, false en caso contrario.
+     * @return true si el responsable se actualiz贸 correctamente, false en caso contrario.
      */
- public static boolean edit(int idPotromon, String nombrePotromon, String descripcion, int puntaje, String rutaImagen, Entrenador entrenador) {
+ public static boolean edit(int idPotromon, String nombrePotromon, String descripcion, String poderes, int puntaje, String rutaImagen, Entrenador entrenador) {
     boolean resultado = false;
     try {
             Connection conexion = Conexion.obtener();
-            String consulta = "UPDATE potrodex SET nombrePotromon = ?, descripcion = ?, puntaje = ?, ruta_imagen = ?, idEntrenador = ? WHERE idPotromon = ?";
+            String consulta = "UPDATE potrodex SET nombrePotromon = ?, descripcion = ?, poderes = ?, puntaje = ?, ruta_imagen = ?, idEntrenador = ? WHERE idPotromon = ?";
             PreparedStatement statement = conexion.prepareStatement(consulta);
             statement.setString(1, nombrePotromon);
             statement.setString(2, descripcion);
-            statement.setInt(3, puntaje);
-            statement.setString(4, rutaImagen);
-            statement.setInt(5, entrenador.getIdEntrenador());
-            statement.setInt(6, idPotromon);
+            statement.setString(3, poderes);
+            statement.setInt(4, puntaje);
+            statement.setString(5, rutaImagen);
+            statement.setInt(6, entrenador.getIdEntrenador());
+            statement.setInt(7, idPotromon);
+            
+            
+
             statement.execute();
             resultado = statement.getUpdateCount() == 1;
             conexion.close();
         
-            
     } catch (Exception ex) {
-        System.err.println("Ocurrió un error: " + ex.getMessage());
+        System.err.println("Ocurri贸 un error: " + ex.getMessage());
     }
     return resultado;
 }
-    
-     public static boolean actualizarPuntaje(int idPotromon, int puntaje) {
+            
+ 
+       public static boolean actualizarPuntaje(int idPotromon, int puntaje) {
         boolean resultado = false;
         
         try{
@@ -199,7 +210,8 @@ public class Potrodex {
                     System.err.println("Ocurrio un error: " + ex.getMessage());
                 }
                 return resultado;
-}
+            }
+            
     
     /**
      * @return the idPotromon
@@ -241,6 +253,20 @@ public class Potrodex {
      */
     public void setDescripcion(String descripcion) {
         this.descripcion = descripcion;
+    }
+
+    /**
+     * @return the poderes
+     */
+    public String getPoderes() {
+        return poderes;
+    }
+
+    /**
+     * @param poderes the poderes to set
+     */
+    public void setPoderes(String poderes) {
+        this.poderes = poderes;
     }
 
     /**

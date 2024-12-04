@@ -6,7 +6,6 @@ package mx.itson.potromon.ui;
 
 import javax.swing.JOptionPane;
 import mx.itson.potromon.entidades.Habilidades;
-import mx.itson.potromon.entidades.Potrodex;
 
 /**
  *
@@ -19,11 +18,11 @@ public class HabilidadesForm extends javax.swing.JDialog {
     /**
      * Creates new form HabilidadesForm
      */
-    public HabilidadesForm(java.awt.Frame parent, boolean modal, int idHabilidades) {
-        super(parent, modal);
-        initComponents();
-        this.idHabilidades = idHabilidades;
-        
+    public HabilidadesForm(java.awt.Window parent, boolean modal, int idHabilidades) {
+    super(parent, modal ? ModalityType.APPLICATION_MODAL : ModalityType.MODELESS);
+    initComponents();
+    this.idHabilidades = idHabilidades;
+
         if (idHabilidades > 0) {
             Habilidades habilidades = Habilidades.getById(idHabilidades);
             if (habilidades != null) {
@@ -34,10 +33,6 @@ public class HabilidadesForm extends javax.swing.JDialog {
                 //cmbEntrenador.
             }
         }
-                Thread thread = new Thread( () -> {
-        
-        });
-        thread.start();
     }
 
     /**
@@ -59,8 +54,6 @@ public class HabilidadesForm extends javax.swing.JDialog {
         txtHabilidadesTres = new java.awt.TextField();
         txtHabilidadesCuatro = new java.awt.TextField();
         txtHabilidadesDos = new java.awt.TextField();
-
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
         jPanel1.setBackground(new java.awt.Color(255, 255, 255));
 
@@ -162,11 +155,11 @@ public class HabilidadesForm extends javax.swing.JDialog {
                 .addComponent(jLabel1)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(txtHabilidadesUno, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 47, Short.MAX_VALUE)
+                .addGap(33, 33, 33)
                 .addComponent(txtHabilidadesDos, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(26, 26, 26)
+                .addGap(28, 28, 28)
                 .addComponent(txtHabilidadesTres, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(16, 16, 16)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 28, Short.MAX_VALUE)
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(btnAceptar)
                     .addComponent(txtHabilidadesCuatro, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -224,9 +217,7 @@ public class HabilidadesForm extends javax.swing.JDialog {
     String habilidadesDos = txtHabilidadesDos.getText();
     String habilidadesTres = txtHabilidadesTres.getText();
     String habilidadesCuatro = txtHabilidadesCuatro.getText();
-
-    Habilidades habilidadesObj = new Habilidades();
-
+    
     boolean resultado = this.idHabilidades == 0 ?
                Habilidades.save(habilidadesUno, habilidadesDos, habilidadesTres, habilidadesCuatro):
                Habilidades.edit(idHabilidades, habilidadesUno, habilidadesDos, habilidadesTres, habilidadesCuatro);

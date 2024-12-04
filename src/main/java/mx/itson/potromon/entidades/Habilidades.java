@@ -34,7 +34,7 @@ public class Habilidades {
        List<Habilidades> habilidades = new ArrayList<>(); 
       try {
            Connection conexion = Conexion.obtener();
-           String consulta = "select idHablidades, habilidadUno, habilidadDos, habilidadTres, habilidadCuatro, idPotromon from habilidades where idHabilidades = ?";
+           String consulta = "select idHablidades, habilidadUno, habilidadDos, habilidadTres, habilidadCuatro, idPotromon from habilidades where idPotromon = ?";
            PreparedStatement statement = conexion.prepareStatement(consulta);
            statement.setInt(1, idPotromon);
           
@@ -86,7 +86,7 @@ public class Habilidades {
         
         try {
            Connection conexion = Conexion.obtener();
-           String query = "Select idHabilidades, habilidadUno, habilidadDos, habilidadTres, habilidadCuatro WHERE idHabilidades = ?";
+           String query = "Select idHabilidades, habilidadUno, habilidadDos, habilidadTres, habilidadCuatro FROM habilidades WHERE idHabilidades = ?";
             PreparedStatement statement = conexion.prepareStatement(query);
             statement.setInt(1, idHabilidades);
            

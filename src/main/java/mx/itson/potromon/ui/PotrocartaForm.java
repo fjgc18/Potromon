@@ -129,7 +129,7 @@ public class PotrocartaForm extends javax.swing.JFrame {
         lblDescripcion.setVerticalAlignment(javax.swing.SwingConstants.TOP);
         getContentPane().add(lblDescripcion, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 350, 270, 80));
 
-        lblidPotromon.setFont(new java.awt.Font("Segoe UI", 3, 18)); // NOI18N
+        lblidPotromon.setFont(new java.awt.Font("Segoe UI", 3, 24)); // NOI18N
         lblidPotromon.setForeground(new java.awt.Color(0, 0, 0));
         lblidPotromon.setText("ID");
         getContentPane().add(lblidPotromon, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 30, 30, 30));

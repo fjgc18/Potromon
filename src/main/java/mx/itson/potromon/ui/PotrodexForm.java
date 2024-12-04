@@ -30,6 +30,7 @@ public class PotrodexForm extends javax.swing.JDialog {
             if (potrodex != null) {
                 txtNombre.setText(potrodex.getNombrePotromon());
                 txtDescripcion.setText(potrodex.getDescripcion());
+                txtPoderes.setText(potrodex.getPoderes());
                 txtPuntaje.setText(String.valueOf(potrodex.getPuntaje()));
                 //cmbEntrenador.
             }
@@ -78,6 +79,8 @@ public class PotrodexForm extends javax.swing.JDialog {
         jLabel6 = new javax.swing.JLabel();
         jLabel7 = new javax.swing.JLabel();
         fondoo = new javax.swing.JLabel();
+        lblPoderes = new javax.swing.JLabel();
+        txtPoderes = new javax.swing.JTextField();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
@@ -188,6 +191,10 @@ public class PotrodexForm extends javax.swing.JDialog {
         fondoo.setText("jLabel7");
         getContentPane().add(fondoo, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 460, 660));
 
+        lblPoderes.setText("jLabel8");
+        getContentPane().add(lblPoderes, new org.netbeans.lib.awtextra.AbsoluteConstraints(270, 420, -1, -1));
+        getContentPane().add(txtPoderes, new org.netbeans.lib.awtextra.AbsoluteConstraints(330, 420, -1, -1));
+
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
@@ -206,6 +213,7 @@ public class PotrodexForm extends javax.swing.JDialog {
     private void btnAceptarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAceptarActionPerformed
         String nombre = txtNombre.getText();
         String descripcion = txtDescripcion.getText();
+        String poderes = txtPoderes.getText();
         String Imagen = txtImagen.getText();
         int puntaje = Integer.parseInt(txtPuntaje.getText());
 
@@ -218,8 +226,8 @@ public class PotrodexForm extends javax.swing.JDialog {
         potrodex.setEntrenador(entrenadorSeleccionado);
 
         boolean resultado = this.idPotrodex == 0 ?
-        Potrodex.save(nombre, descripcion, puntaje, Imagen, entrenadorSeleccionado):
-        Potrodex.edit(idPotrodex, nombre, descripcion, puntaje, Imagen, entrenadorSeleccionado);
+        Potrodex.save(nombre, descripcion, poderes, puntaje, Imagen, entrenadorSeleccionado):
+        Potrodex.edit(idPotrodex, nombre, descripcion, poderes, puntaje, Imagen, entrenadorSeleccionado);
         if(resultado){
             JOptionPane.showMessageDialog (this,"El registro se guardo correctamente", "Registro guardado",JOptionPane.INFORMATION_MESSAGE);
             dispose();
@@ -239,8 +247,8 @@ public class PotrodexForm extends javax.swing.JDialog {
     }//GEN-LAST:event_txtNombreActionPerformed
 
     private void btnHabilidadesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnHabilidadesActionPerformed
-       //HabilidadesForm form = new HabilidadesForm(this, true, int idHabilidades);
-       //form.setVisible(true);
+       HabilidadesForm form = new HabilidadesForm(this, true, 0);
+       form.setVisible(true);
     }//GEN-LAST:event_btnHabilidadesActionPerformed
 
     /**
@@ -297,9 +305,11 @@ public class PotrodexForm extends javax.swing.JDialog {
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
+    private javax.swing.JLabel lblPoderes;
     private java.awt.TextField txtDescripcion;
     private javax.swing.JTextField txtImagen;
     private java.awt.TextField txtNombre;
+    private javax.swing.JTextField txtPoderes;
     private java.awt.TextField txtPuntaje;
     // End of variables declaration//GEN-END:variables
 }
