@@ -36,7 +36,7 @@ public class PotrocartaForm extends javax.swing.JFrame {
                 
                 URL url = new URL(rutaImagen);
                 ImageIcon icon = new ImageIcon(url);
-                Image img = icon.getImage().getScaledInstance(200, 200, Image.SCALE_SMOOTH);
+                Image img = icon.getImage().getScaledInstance(290, 180, Image.SCALE_SMOOTH);
                 PotroImagen.setIcon(new ImageIcon(img));  // Cambia la imagen en el JLabel
             } else {
                 PotroImagen.setText("Imagen no disponible");
@@ -56,38 +56,82 @@ public class PotrocartaForm extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        Nombre = new javax.swing.JLabel();
+        Puntuaje = new javax.swing.JLabel();
+        PS = new javax.swing.JLabel();
+        Habilidades = new javax.swing.JLabel();
+        hb = new javax.swing.JLabel();
+        Descripcion = new javax.swing.JLabel();
+        Ds = new javax.swing.JLabel();
+        Entrenador = new javax.swing.JLabel();
+        NombreEntrenador = new javax.swing.JLabel();
+        Id = new javax.swing.JLabel();
         PotroImagen = new javax.swing.JLabel();
-        jLabel1 = new javax.swing.JLabel();
+        Fondo = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        jLabel1.setText("Prueba imagen potrocard");
+        Nombre.setBackground(new java.awt.Color(0, 0, 0));
+        Nombre.setFont(new java.awt.Font("Segoe UI", 3, 18)); // NOI18N
+        Nombre.setForeground(new java.awt.Color(0, 0, 0));
+        Nombre.setText("Nombre");
+        getContentPane().add(Nombre, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 16, 110, 30));
 
-        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
-        getContentPane().setLayout(layout);
-        layout.setHorizontalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addContainerGap(108, Short.MAX_VALUE)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 152, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(105, 105, 105))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addComponent(PotroImagen, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(92, 92, 92))))
-        );
-        layout.setVerticalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addGap(32, 32, 32)
-                .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 26, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
-                .addComponent(PotroImagen, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(24, Short.MAX_VALUE))
-        );
+        Puntuaje.setFont(new java.awt.Font("Segoe UI", 3, 24)); // NOI18N
+        Puntuaje.setForeground(new java.awt.Color(0, 0, 0));
+        Puntuaje.setText("70");
+        getContentPane().add(Puntuaje, new org.netbeans.lib.awtextra.AbsoluteConstraints(270, 20, 40, 30));
 
-        pack();
+        PS.setFont(new java.awt.Font("Segoe UI", 3, 10)); // NOI18N
+        PS.setForeground(new java.awt.Color(0, 0, 0));
+        PS.setText("PS");
+        getContentPane().add(PS, new org.netbeans.lib.awtextra.AbsoluteConstraints(260, 30, -1, -1));
+
+        Habilidades.setFont(new java.awt.Font("Segoe UI", 3, 14)); // NOI18N
+        Habilidades.setForeground(new java.awt.Color(0, 0, 0));
+        Habilidades.setText("Habilidades");
+        getContentPane().add(Habilidades, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 250, -1, -1));
+
+        hb.setForeground(new java.awt.Color(0, 0, 0));
+        hb.setText(";");
+        getContentPane().add(hb, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 270, 260, 70));
+
+        Descripcion.setFont(new java.awt.Font("Segoe UI", 3, 14)); // NOI18N
+        Descripcion.setForeground(new java.awt.Color(0, 0, 0));
+        Descripcion.setText("Descripción");
+        getContentPane().add(Descripcion, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 350, 80, -1));
+
+        Ds.setForeground(new java.awt.Color(0, 0, 0));
+        Ds.setText(":");
+        getContentPane().add(Ds, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 370, 270, 60));
+
+        Entrenador.setFont(new java.awt.Font("Segoe UI", 3, 12)); // NOI18N
+        Entrenador.setForeground(new java.awt.Color(0, 0, 0));
+        Entrenador.setText("Entrenador");
+        getContentPane().add(Entrenador, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 440, -1, -1));
+
+        NombreEntrenador.setFont(new java.awt.Font("Segoe UI", 3, 12)); // NOI18N
+        NombreEntrenador.setForeground(new java.awt.Color(0, 0, 0));
+        NombreEntrenador.setText("Nombre entrenador");
+        getContentPane().add(NombreEntrenador, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 440, 200, -1));
+
+        Id.setFont(new java.awt.Font("Segoe UI", 3, 14)); // NOI18N
+        Id.setForeground(new java.awt.Color(0, 0, 0));
+        Id.setText("ID");
+        getContentPane().add(Id, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 30, -1, -1));
+
+        PotroImagen.setText("jLabel1");
+        getContentPane().add(PotroImagen, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 50, 290, 180));
+
+        Fondo.setFont(new java.awt.Font("Segoe UI", 3, 12)); // NOI18N
+        Fondo.setForeground(new java.awt.Color(0, 0, 0));
+        Fondo.setIcon(new javax.swing.ImageIcon("D:\\Descargas\\fondo.png")); // NOI18N
+        Fondo.setText("jLabel2");
+        getContentPane().add(Fondo, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 350, 490));
+
+        setSize(new java.awt.Dimension(364, 498));
+        setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
     /**
@@ -126,7 +170,17 @@ public class PotrocartaForm extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JLabel Descripcion;
+    private javax.swing.JLabel Ds;
+    private javax.swing.JLabel Entrenador;
+    private javax.swing.JLabel Fondo;
+    private javax.swing.JLabel Habilidades;
+    private javax.swing.JLabel Id;
+    private javax.swing.JLabel Nombre;
+    private javax.swing.JLabel NombreEntrenador;
+    private javax.swing.JLabel PS;
     private javax.swing.JLabel PotroImagen;
-    private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel Puntuaje;
+    private javax.swing.JLabel hb;
     // End of variables declaration//GEN-END:variables
 }
