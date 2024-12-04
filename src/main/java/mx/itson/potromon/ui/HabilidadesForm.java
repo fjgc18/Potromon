@@ -28,9 +28,9 @@ public class HabilidadesForm extends javax.swing.JDialog {
             Habilidades habilidades = Habilidades.getById(idHabilidades);
             if (habilidades != null) {
                 txtHabilidadesUno.setText(habilidades.getHabilidadesUno());
-                txtHabilidadesUno.setText(habilidades.getHabilidadesDos());
-                txtHabilidadesUno.setText(habilidades.getHabilidadesTres());
-                txtHabilidadesUno.setText(habilidades.getHabilidadesCuatro());
+                txtHabilidadesDos.setText(habilidades.getHabilidadesDos());
+                txtHabilidadesTres.setText(habilidades.getHabilidadesTres());
+                txtHabilidadesCuatro.setText(habilidades.getHabilidadesCuatro());
                 //cmbEntrenador.
             }
         }
