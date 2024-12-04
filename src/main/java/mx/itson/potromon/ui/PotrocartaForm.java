@@ -126,11 +126,21 @@ public class PotrocartaForm extends javax.swing.JFrame {
 
         Fondo.setFont(new java.awt.Font("Segoe UI", 3, 12)); // NOI18N
         Fondo.setForeground(new java.awt.Color(0, 0, 0));
-        Fondo.setIcon(new javax.swing.ImageIcon("D:\\Descargas\\fondo.png")); // NOI18N
+        Fondo.setIcon(new javax.swing.JLabel() {
+            public javax.swing.Icon getIcon() {
+                try {
+                    return new javax.swing.ImageIcon(
+                        new java.net.URL("https://e1.pngegg.com/pngimages/754/520/png-clipart-lunareclipse-blanks-pokemon-trading-card-frame-thumbnail.png")
+                    );
+                } catch (java.net.MalformedURLException e) {
+                }
+                return null;
+            }
+        }.getIcon());
         Fondo.setText("jLabel2");
         getContentPane().add(Fondo, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 350, 490));
 
-        setSize(new java.awt.Dimension(364, 498));
+        setSize(new java.awt.Dimension(362, 498));
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
