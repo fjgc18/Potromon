@@ -14,3 +14,4 @@ public class Potromon {
    public static void main(String[] args) {
         Entrenador.getAll();}
 }
+//prueba
