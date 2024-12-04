@@ -8,6 +8,7 @@ import java.awt.Image;
 import java.net.URL;
 import javax.swing.ImageIcon;
 import javax.swing.JOptionPane;
+import mx.itson.potromon.entidades.Entrenador;
 import mx.itson.potromon.entidades.Potrodex;
 
 /**
@@ -25,6 +26,24 @@ public class PotrocartaForm extends javax.swing.JFrame {
     Potrodex potromon = Potrodex.getById(idPotromon);
     if (potromon != null) {
         cargarImagen(potromon.getRutaImagen());
+        
+        lblidPotromon.setText("ID: " + potromon.getIdPotromon());
+        
+        lblPuntaje.setText("Puntaje: " + potromon.getPuntaje());
+        
+        String descripcion = potromon.getDescripcion();
+        if (descripcion != null && !descripcion.isEmpty()) {
+        lblDescripcion.setText("Descripción: " + descripcion);
+        } else {
+        lblDescripcion.setText("Descripción no disponible");
+}
+
+        Entrenador entrenador = potromon.getEntrenador();
+        if (entrenador != null) {
+            lblEntrenador.setText("Entrenador: " + entrenador.getNombreEntrenador());
+        } else {
+            lblEntrenador.setText("Entrenador no disponible");
+        }
     } else {
         JOptionPane.showMessageDialog(this, "No se encontró el Potromon");
     }
@@ -57,15 +76,15 @@ public class PotrocartaForm extends javax.swing.JFrame {
     private void initComponents() {
 
         Nombre = new javax.swing.JLabel();
-        Puntuaje = new javax.swing.JLabel();
+        lblPuntaje = new javax.swing.JLabel();
         PS = new javax.swing.JLabel();
         Habilidades = new javax.swing.JLabel();
         hb = new javax.swing.JLabel();
         Descripcion = new javax.swing.JLabel();
-        Ds = new javax.swing.JLabel();
+        lblDescripcion = new javax.swing.JLabel();
         Entrenador = new javax.swing.JLabel();
-        NombreEntrenador = new javax.swing.JLabel();
-        Id = new javax.swing.JLabel();
+        lblEntrenador = new javax.swing.JLabel();
+        lblidPotromon = new javax.swing.JLabel();
         PotroImagen = new javax.swing.JLabel();
         Fondo = new javax.swing.JLabel();
 
@@ -78,10 +97,10 @@ public class PotrocartaForm extends javax.swing.JFrame {
         Nombre.setText("Nombre");
         getContentPane().add(Nombre, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 16, 110, 30));
 
-        Puntuaje.setFont(new java.awt.Font("Segoe UI", 3, 24)); // NOI18N
-        Puntuaje.setForeground(new java.awt.Color(0, 0, 0));
-        Puntuaje.setText("70");
-        getContentPane().add(Puntuaje, new org.netbeans.lib.awtextra.AbsoluteConstraints(270, 20, 40, 30));
+        lblPuntaje.setFont(new java.awt.Font("Segoe UI", 3, 24)); // NOI18N
+        lblPuntaje.setForeground(new java.awt.Color(0, 0, 0));
+        lblPuntaje.setText("70");
+        getContentPane().add(lblPuntaje, new org.netbeans.lib.awtextra.AbsoluteConstraints(270, 20, 40, 30));
 
         PS.setFont(new java.awt.Font("Segoe UI", 3, 10)); // NOI18N
         PS.setForeground(new java.awt.Color(0, 0, 0));
@@ -102,24 +121,23 @@ public class PotrocartaForm extends javax.swing.JFrame {
         Descripcion.setText("Descripción");
         getContentPane().add(Descripcion, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 350, 80, -1));
 
-        Ds.setForeground(new java.awt.Color(0, 0, 0));
-        Ds.setText(":");
-        getContentPane().add(Ds, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 370, 270, 60));
+        lblDescripcion.setForeground(new java.awt.Color(0, 0, 0));
+        lblDescripcion.setText(":");
+        getContentPane().add(lblDescripcion, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 370, 270, 60));
 
         Entrenador.setFont(new java.awt.Font("Segoe UI", 3, 12)); // NOI18N
         Entrenador.setForeground(new java.awt.Color(0, 0, 0));
         Entrenador.setText("Entrenador");
         getContentPane().add(Entrenador, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 440, -1, -1));
 
-        NombreEntrenador.setFont(new java.awt.Font("Segoe UI", 3, 12)); // NOI18N
-        NombreEntrenador.setForeground(new java.awt.Color(0, 0, 0));
-        NombreEntrenador.setText("Nombre entrenador");
-        getContentPane().add(NombreEntrenador, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 440, 200, -1));
+        lblEntrenador.setFont(new java.awt.Font("Segoe UI", 3, 12)); // NOI18N
+        lblEntrenador.setForeground(new java.awt.Color(0, 0, 0));
+        getContentPane().add(lblEntrenador, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 440, 200, 20));
 
-        Id.setFont(new java.awt.Font("Segoe UI", 3, 14)); // NOI18N
-        Id.setForeground(new java.awt.Color(0, 0, 0));
-        Id.setText("ID");
-        getContentPane().add(Id, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 30, -1, -1));
+        lblidPotromon.setFont(new java.awt.Font("Segoe UI", 3, 14)); // NOI18N
+        lblidPotromon.setForeground(new java.awt.Color(0, 0, 0));
+        lblidPotromon.setText("ID");
+        getContentPane().add(lblidPotromon, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 30, -1, -1));
 
         PotroImagen.setText("jLabel1");
         getContentPane().add(PotroImagen, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 50, 290, 180));
@@ -181,16 +199,16 @@ public class PotrocartaForm extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel Descripcion;
-    private javax.swing.JLabel Ds;
     private javax.swing.JLabel Entrenador;
     private javax.swing.JLabel Fondo;
     private javax.swing.JLabel Habilidades;
-    private javax.swing.JLabel Id;
     private javax.swing.JLabel Nombre;
-    private javax.swing.JLabel NombreEntrenador;
     private javax.swing.JLabel PS;
     private javax.swing.JLabel PotroImagen;
-    private javax.swing.JLabel Puntuaje;
     private javax.swing.JLabel hb;
+    private javax.swing.JLabel lblDescripcion;
+    private javax.swing.JLabel lblEntrenador;
+    private javax.swing.JLabel lblPuntaje;
+    private javax.swing.JLabel lblidPotromon;
     // End of variables declaration//GEN-END:variables
 }

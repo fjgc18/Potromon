@@ -73,7 +73,7 @@ public class Potrodex {
         Potrodex p = new Potrodex();
     try {
         Connection conexion = Conexion.obtener();
-        String query = "SELECT idPotromon, nombrePotromon, descripcion, poderes, puntaje, ruta_imagen FROM potrodex WHERE idPotromon = ?";
+        String query = "SELECT idPotromon, nombrePotromon, descripcion, poderes, puntaje, ruta_imagen, idEntrenador FROM potrodex WHERE idPotromon = ?";
         PreparedStatement statement = conexion.prepareStatement(query);
         statement.setInt(1, idPotromon);
         ResultSet rs = statement.executeQuery();
@@ -84,6 +84,10 @@ public class Potrodex {
             p.setPoderes(rs.getString("poderes"));
             p.setPuntaje(rs.getInt("puntaje"));
             p.setRutaImagen(rs.getString("ruta_imagen"));
+            
+            int idEntrenador = rs.getInt("idEntrenador");
+            Entrenador entrenador = Entrenador.getById(idEntrenador);
+            p.setEntrenador(entrenador); 
         }
     } catch (Exception ex) {
         System.err.println("Ocurrió un error: " + ex.getMessage());
