@@ -23,14 +23,15 @@ public class EntrenadorForm extends javax.swing.JDialog {
     public EntrenadorForm(java.awt.Frame parent, boolean modal, int idEntrenador) {
         super(parent, modal);
         initComponents();
-        this.idEntrenador = idEntrenador;
         
+        
+        this.idEntrenador = idEntrenador;
         if (idEntrenador > 0) {
-            Entrenador entrenador = Entrenador.getById(idEntrenador);
-            if (entrenador != null) {
-                txtNombre.setText(entrenador.getNombreEntrenador());
-                txtAlias.setText(entrenador.getAliasEntrenador());
-                txtOrigen.setText(entrenador.getPuebloOrigen());
+            Entrenador e = Entrenador.getById(idEntrenador);
+            if (e != null) {
+                txtNombre.setText(e.getNombreEntrenador());
+                txtAlias.setText(e.getAliasEntrenador());
+                txtOrigen.setText(e.getPuebloOrigen());
             }
         }
     }

@@ -18,13 +18,14 @@ import mx.itson.potromon.persistencia.Conexion;
  */
 public class Potrodex {
 
-    
+ 
     private int idPotromon;
     private String nombrePotromon;
     private String descripcion;
     private String poderes;
     private int puntaje;
     private String rutaImagen;
+    private Entrenador entrenador;
     
     /**
      * Obtiene todos los Potromones de la base de datos
@@ -36,7 +37,7 @@ public class Potrodex {
       try {
            Connection conexion = Conexion.obtener();
            Statement statement = conexion.createStatement();
-           ResultSet rs = statement.executeQuery("Select idPotromon, nombrePotromon, descripcion, poderes, puntaje, ruta_imagen FROM potrodex");
+           ResultSet rs = statement.executeQuery("Select idPotromon, nombrePotromon, descripcion, poderes, puntaje, ruta_imagen, idEntrenador FROM potrodex");
            while(rs.next()){
                Potrodex p = new Potrodex();
                p.setIdPotromon(rs.getInt(1));
@@ -45,6 +46,10 @@ public class Potrodex {
                p.setPoderes(rs.getString(4));
                p.setPuntaje(rs.getInt(5));
                p.setRutaImagen(rs.getString(6));
+               
+               Entrenador e = Entrenador.getById(rs.getInt(7));
+               p.setEntrenador(e);
+               
                potrodex.add(p);
            }
            
@@ -261,6 +266,19 @@ public class Potrodex {
      */
     public void setRutaImagen(String rutaImagen) {
         this.rutaImagen = rutaImagen;
+    }  
+
+    /**
+     * @return the entrenador
+     */
+    public Entrenador getEntrenador() {
+        return entrenador;
     }
-    
+
+    /**
+     * @param entrenador the entrenador to set
+     */
+    public void setEntrenador(Entrenador entrenador) {
+        this.entrenador = entrenador;
+    }
 }

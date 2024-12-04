@@ -4,7 +4,9 @@
  */
 package mx.itson.potromon.ui;
 
+import java.util.List;
 import javax.swing.JOptionPane;
+import mx.itson.potromon.entidades.Entrenador;
 import mx.itson.potromon.entidades.Potrodex;
 
 /**
@@ -32,6 +34,24 @@ public class PotrodexForm extends javax.swing.JDialog {
                 txtPuntaje.setText(String.valueOf(potrodex.getPuntaje()));
             }
         }
+                Thread thread = new Thread( () -> {
+                
+       cargarEntrenadores();
+        
+        });
+        thread.start();
+        
+       
+        
+            
+        
+    }
+    public void cargarEntrenadores() {
+    List <Entrenador> entrenadores = Entrenador.getAll();
+    for (Entrenador e : entrenadores){
+        cmbEntrenador.addItem(e);
+        
+    }
     }
 
     /**
@@ -58,6 +78,7 @@ public class PotrodexForm extends javax.swing.JDialog {
         txtPuntaje = new java.awt.TextField();
         txtImagen = new javax.swing.JTextField();
         jLabel6 = new javax.swing.JLabel();
+        cmbEntrenador = new javax.swing.JComboBox<>();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
@@ -128,7 +149,7 @@ public class PotrodexForm extends javax.swing.JDialog {
                     .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel3Layout.createSequentialGroup()
                         .addGap(14, 14, 14)
                         .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 127, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(243, Short.MAX_VALUE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jPanel3Layout.setVerticalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -175,6 +196,12 @@ public class PotrodexForm extends javax.swing.JDialog {
 
         jLabel6.setText("Ruta de imagen (URL):");
 
+        cmbEntrenador.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                cmbEntrenadorActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
@@ -194,6 +221,9 @@ public class PotrodexForm extends javax.swing.JDialog {
                         .addGap(0, 0, Short.MAX_VALUE))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addGroup(jPanel1Layout.createSequentialGroup()
+                                .addGap(0, 0, Short.MAX_VALUE)
+                                .addComponent(cmbEntrenador, javax.swing.GroupLayout.PREFERRED_SIZE, 119, javax.swing.GroupLayout.PREFERRED_SIZE))
                             .addComponent(txtImagen, javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(jPanel1Layout.createSequentialGroup()
                                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
@@ -217,6 +247,8 @@ public class PotrodexForm extends javax.swing.JDialog {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(txtPoderes, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(cmbEntrenador, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(38, 38, 38)
                 .addComponent(jLabel4)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
@@ -241,7 +273,7 @@ public class PotrodexForm extends javax.swing.JDialog {
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addContainerGap(49, Short.MAX_VALUE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
 
@@ -266,7 +298,18 @@ public class PotrodexForm extends javax.swing.JDialog {
     String poderes = txtPoderes.getText();
     String Imagen = txtImagen.getText();
     int puntaje = Integer.parseInt(txtPuntaje.getText());
-   
+    
+    
+    Entrenador entrenadorSeleccionado = (Entrenador) cmbEntrenador.getSelectedItem();
+        if (entrenadorSeleccionado == null) {
+            JOptionPane.showMessageDialog(this, "Debe seleccionar un responsable.", "Error", JOptionPane.ERROR_MESSAGE);
+            return;
+        }
+        Potrodex potrodex = new Potrodex();
+        potrodex.setEntrenador(entrenadorSeleccionado);
+        
+        
+        
        boolean resultado = this.idPotrodex == 0 ?
                Potrodex.save(nombre, descripcion, poderes, puntaje, Imagen):
                Potrodex.edit(idPotrodex, nombre, descripcion, poderes, puntaje, Imagen);
@@ -285,6 +328,10 @@ public class PotrodexForm extends javax.swing.JDialog {
     private void txtImagenActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtImagenActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_txtImagenActionPerformed
+
+    private void cmbEntrenadorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cmbEntrenadorActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_cmbEntrenadorActionPerformed
 
     /**
      * @param args the command line arguments
@@ -330,6 +377,7 @@ public class PotrodexForm extends javax.swing.JDialog {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnAceptar;
+    private javax.swing.JComboBox<Entrenador> cmbEntrenador;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;

@@ -139,7 +139,7 @@ public class Entrenador {
         
         try {
                 Connection conexion = Conexion.obtener();
-                String consulta = "UPDATE entrenador SET nombreEntrenador = ?, aliasEntrenador = ?, puebloOrigen =? WHERE idEntrenador = ?";
+                String consulta = "UPDATE entrenador SET nombreEntrenador = ?, aliasEntrenador = ?, puebloOrigen = ? WHERE idEntrenador = ?";
                 PreparedStatement statement = conexion.prepareStatement(consulta);
                 statement.setString(1, nombreEntrenador);
                 statement.setString(2, aliasEntrenador);
@@ -156,15 +156,10 @@ public class Entrenador {
            return resultado;
     }      
     
-    
-    
-    
-    
-    
-    
-    
-    
-    
+    @Override
+    public String toString(){
+      return this.nombreEntrenador;
+    }
 
     /**
      * @return the idEntrenador
