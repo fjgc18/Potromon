@@ -24,6 +24,30 @@ public class Habilidades {
      * 
      * @return Lista de objetos {@link Habilidades} con las habilidades encontradas
      */
+        public static List<Habilidades> getList(int idPotromon){
+       List<Habilidades> habilidades = new ArrayList<>(); 
+      try {
+           Connection conexion = Conexion.obtener();
+           String consulta = "select idHablidades, habilidadUno, habilidadDos, habilidadTres, habilidadCuatro, idPotromon from habilidades where idHabilidades = ?";
+           PreparedStatement statement = conexion.prepareStatement(consulta);
+           statement.setInt(1, idPotromon);
+          
+           ResultSet rs = statement.executeQuery();
+           while(rs.next()){
+               Habilidades h = new Habilidades();
+               h.setIdHabilidades(rs.getInt(1));
+               h.setHabilidadesUno(rs.getString(2));
+               h.setHabilidadesDos(rs.getString(3));
+               h.setHabilidadesTres(rs.getString(4));
+               h.setHabilidadesCuatro(rs.getString(5));
+               habilidades.add(h);
+           }
+           
+       } catch(Exception ex){
+           System.err.println("Ocurrio un error: " + ex.getMessage());
+       }   
+      return habilidades;
+}
          public static List<Habilidades> getAll(){
        List<Habilidades> habilidades = new ArrayList<>(); 
       try {
@@ -51,7 +75,7 @@ public class Habilidades {
      * @param idHabilidades Identificador de la habilidad a buscar.
      * @return Un objeto {@link Habilidades} con la información de la habilidad encontrada o vacío si no existe.
      */
-      public static Habilidades getById(int idHabilidades) {
+      /*public static Habilidades getById(int idHabilidades) {
         Habilidades h = new Habilidades();
         
         try {
@@ -75,7 +99,7 @@ public class Habilidades {
        }   
       return h;
            
-      }
+      }*/
 
     /**
      * Guarda una nueva habilidad en la base de datos

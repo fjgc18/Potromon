@@ -32,6 +32,7 @@ public class PotrodexForm extends javax.swing.JDialog {
                 txtDescripcion.setText(potrodex.getDescripcion());
                 txtPoderes.setText(potrodex.getPoderes());
                 txtPuntaje.setText(String.valueOf(potrodex.getPuntaje()));
+                //cmbEntrenador.
             }
         }
                 Thread thread = new Thread( () -> {
@@ -298,7 +299,7 @@ public class PotrodexForm extends javax.swing.JDialog {
     String poderes = txtPoderes.getText();
     String Imagen = txtImagen.getText();
     int puntaje = Integer.parseInt(txtPuntaje.getText());
-    
+    String entrenador = (String) cmbEntrenador.getSelectedItem();
     
     Entrenador entrenadorSeleccionado = (Entrenador) cmbEntrenador.getSelectedItem();
         if (entrenadorSeleccionado == null) {
@@ -311,13 +312,13 @@ public class PotrodexForm extends javax.swing.JDialog {
         
         
        boolean resultado = this.idPotrodex == 0 ?
-               Potrodex.save(nombre, descripcion, poderes, puntaje, Imagen):
-               Potrodex.edit(idPotrodex, nombre, descripcion, poderes, puntaje, Imagen);
+               Potrodex.save(nombre, descripcion, poderes, puntaje, Imagen, entrenador):
+               Potrodex.edit(idPotrodex, nombre, descripcion, poderes, puntaje, Imagen, entrenador);
        if(resultado){
           JOptionPane.showMessageDialog (this,"El registro se guardo correctamente", "Registro guardado",JOptionPane.INFORMATION_MESSAGE);
        dispose();  
        }else {
-           JOptionPane.showMessageDialog (this,"El registro tuvo un errro al guardar" , "Error al guardar",JOptionPane.ERROR_MESSAGE);
+           JOptionPane.showMessageDialog (this,"El registro tuvo un error al guardar" , "Error al guardar",JOptionPane.ERROR_MESSAGE);
        
 }
         
