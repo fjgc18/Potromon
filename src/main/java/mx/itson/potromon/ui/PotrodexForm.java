@@ -299,7 +299,7 @@ public class PotrodexForm extends javax.swing.JDialog {
     String poderes = txtPoderes.getText();
     String Imagen = txtImagen.getText();
     int puntaje = Integer.parseInt(txtPuntaje.getText());
-    String entrenador = (String) cmbEntrenador.getSelectedItem();
+
     
     Entrenador entrenadorSeleccionado = (Entrenador) cmbEntrenador.getSelectedItem();
         if (entrenadorSeleccionado == null) {
@@ -312,8 +312,8 @@ public class PotrodexForm extends javax.swing.JDialog {
         
         
        boolean resultado = this.idPotrodex == 0 ?
-               Potrodex.save(nombre, descripcion, poderes, puntaje, Imagen, entrenador):
-               Potrodex.edit(idPotrodex, nombre, descripcion, poderes, puntaje, Imagen, entrenador);
+               Potrodex.save(nombre, descripcion, poderes, puntaje, Imagen, entrenadorSeleccionado):
+               Potrodex.edit(idPotrodex, nombre, descripcion, poderes, puntaje, Imagen, entrenadorSeleccionado);
        if(resultado){
           JOptionPane.showMessageDialog (this,"El registro se guardo correctamente", "Registro guardado",JOptionPane.INFORMATION_MESSAGE);
        dispose();  

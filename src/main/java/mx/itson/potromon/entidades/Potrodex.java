@@ -102,20 +102,20 @@ public class Potrodex {
   * @param puntaje valor del puntaje del potrodex
   * @return true so se guardo exitosamente; de lo contrario, false.
   */          
-  public static boolean save(String nombrePotromon, String descripcion, String poderes, int puntaje, String rutaImagen, String entrenador) {
+  public static boolean save(String nombrePotromon, String descripcion, String poderes, int puntaje, String rutaImagen, Entrenador entrenador) {
        boolean resultado = false;
        
         
         try {
                 Connection conexion = Conexion.obtener();
-                String consulta = "INSERT INTO potrodex (nombrePotromon, descripcion, poderes, puntaje, ruta_imagen, idEntrenador) VALUES (?,?,?,?,?)";
+                String consulta = "INSERT INTO potrodex (nombrePotromon, descripcion, poderes, puntaje, ruta_imagen, idEntrenador) VALUES (?,?,?,?,?,?)";
                 PreparedStatement statement = conexion.prepareStatement(consulta);
                 statement.setString(1, nombrePotromon);
                 statement.setString(2, descripcion);
                 statement.setString(3, poderes);
                 statement.setInt(4, puntaje);
                 statement.setString(5, rutaImagen);
-                statement.setString(6, entrenador);
+                statement.setInt(6, entrenador.getIdEntrenador());
                 
                 statement.execute();
                 resultado = statement.getUpdateCount() == 1;
@@ -160,7 +160,7 @@ public class Potrodex {
      * @param puntaje el nuevo puntaje del Potrodex
      * @return true si el responsable se actualizó correctamente, false en caso contrario.
      */
- public static boolean edit(int idPotromon, String nombrePotromon, String descripcion, String poderes, int puntaje, String rutaImagen, String entrenador) {
+ public static boolean edit(int idPotromon, String nombrePotromon, String descripcion, String poderes, int puntaje, String rutaImagen, Entrenador entrenador) {
     boolean resultado = false;
     try {
             Connection conexion = Conexion.obtener();
@@ -171,8 +171,9 @@ public class Potrodex {
             statement.setString(3, poderes);
             statement.setInt(4, puntaje);
             statement.setString(5, rutaImagen);
-            statement.setInt(6, idPotromon);
-            statement.setString(7, entrenador);
+            statement.setInt(6, entrenador.getIdEntrenador());
+            statement.setInt(7, idPotromon);
+            
             
 
             statement.execute();
@@ -185,10 +186,6 @@ public class Potrodex {
     return resultado;
 }
             
-    @Override
-    public String toString(){
-    return this.nombrePotromon;
-    }
     
     /**
      * @return the idPotromon
@@ -301,4 +298,10 @@ public class Potrodex {
     public void setHabilidades(List<Habilidades> habilidades) {
         this.habilidades = habilidades;
     }
+    
+    @Override
+    public String toString(){
+    return this.nombrePotromon;
+    }
+    
 }
