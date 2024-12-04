@@ -11,25 +11,44 @@ import mx.itson.potromon.entidades.Entrenador;
 import java.sql.PreparedStatement;
 
 /**
- *
+ * Clase que representa una ventana de listado de entrenadores.
+ * Permite realizar operaciones CRUD (Agregar, Editar, Eliminar) sobre los registros de entrenadores.
+ * 
+ * Funcionalidades principales:
+ * - Visualizar la lista de entrenadores en una tabla.
+ * - Agregar un nuevo entrenador.
+ * - Editar un entrenador existente.
+ * - Eliminar un entrenador.
+ * 
+ * Utiliza una conexión con la clase "Entrenador" para acceder a los datos.
+ * 
  * @author bruns
  */
 public class EntrenadorListado extends javax.swing.JFrame {
 
     /**
-     * Creates new form EntrenadorListado
+     * Constructor principal que inicializa la interfaz gráfica y carga los datos iniciales en la tabla.
      */
     public EntrenadorListado() {
         initComponents();
         cargarTable();
     }
-    
+
+    /**
+     * Evento que se ejecuta al abrir la ventana. Carga los datos en la tabla
+     * y oculta la columna de ID para una mejor presentación visual.
+     * 
+     * @param evt Evento de apertura de ventana.
+     */
     private void formWindowOpened(java.awt.event.WindowEvent evt) {                                  
         cargarTable();
         tblEntrenadores.removeColumn(tblEntrenadores.getColumnModel().getColumn(0));
     }   
     
-    
+    /**
+     * Carga los datos de los entrenadores en la tabla.
+     * Obtiene los datos mediante el método estático `getAll()` de la clase Entrenador.
+     */
     private void cargarTable(){
     List<Entrenador> entrenador = Entrenador.getAll();
     DefaultTableModel modeloTable = (DefaultTableModel) tblEntrenadores.getModel();
@@ -186,7 +205,9 @@ public class EntrenadorListado extends javax.swing.JFrame {
     }//GEN-LAST:event_btnEliminarActionPerformed
 
     /**
-     * @param args the command line arguments
+     * Método principal para ejecutar la aplicación.
+     * 
+     * @param args Argumentos de línea de comandos.
      */
     public static void main(String args[]) {
         /* Set the Nimbus look and feel */

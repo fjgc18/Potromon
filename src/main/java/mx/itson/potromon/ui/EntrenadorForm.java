@@ -10,6 +10,10 @@ import javax.swing.JOptionPane;
 import mx.itson.potromon.entidades.Entrenador;
 
 /**
+ * Clase que representa la interfaz gráfica para registrar o editar un entrenador.
+ * Permite al usuario ingresar datos como el nombre, apodo y lugar de origen del entrenador.
+ * Si se pasa un ID de entrenador existente, los campos se llenan con los datos correspondientes
+ * para su edición.
  *
  * @author bruns
  */
@@ -18,7 +22,12 @@ public class EntrenadorForm extends javax.swing.JDialog {
     int idEntrenador;
 
     /**
-     * Creates new form EntrenadorForm
+     * Constructor de la clase EntrenadorForm. Inicializa los componentes gráficos y, en caso de que
+     * el ID del entrenador sea mayor a 0, carga los datos del entrenador para su edición.
+     *
+     * @param parent El marco principal que invoca este formulario.
+     * @param modal Define si el formulario es modal.
+     * @param idEntrenador El ID del entrenador que se va a registrar o editar.
      */
     public EntrenadorForm(java.awt.Frame parent, boolean modal, int idEntrenador) {
         super(parent, modal);
