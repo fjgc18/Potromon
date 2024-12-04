@@ -8,7 +8,6 @@ import java.util.List;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 import mx.itson.potromon.entidades.Potrodex;
-import java.sql.PreparedStatement;
 
 /**
  *
@@ -39,7 +38,7 @@ public class PotrodexListado extends javax.swing.JFrame {
         btnAgregar = new javax.swing.JButton();
         btnEditar = new javax.swing.JButton();
         btnEliminar = new javax.swing.JButton();
-        btnShow = new javax.swing.JButton();
+        btnshow = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -80,7 +79,12 @@ public class PotrodexListado extends javax.swing.JFrame {
             }
         });
 
-        btnShow.setText("Show Potromon");
+        btnshow.setText("Show Potrocard");
+        btnshow.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnshowActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -88,18 +92,21 @@ public class PotrodexListado extends javax.swing.JFrame {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jScrollPane1)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 411, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
                         .addGap(37, 37, 37)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(btnEditar)
-                            .addComponent(btnAgregar)
-                            .addComponent(btnEliminar)))
+                            .addComponent(btnAgregar)))
                     .addGroup(layout.createSequentialGroup()
+                        .addGap(18, 18, 18)
+                        .addComponent(btnshow))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(btnShow, javax.swing.GroupLayout.PREFERRED_SIZE, 125, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap())
+                        .addComponent(btnEliminar)
+                        .addGap(23, 23, 23)))
+                .addGap(46, 46, 46))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 357, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -109,21 +116,19 @@ public class PotrodexListado extends javax.swing.JFrame {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addComponent(jLabel1)
-                .addGap(18, 18, 18)
+                .addGap(18, 18, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addGroup(layout.createSequentialGroup()
-                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 371, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(0, 14, Short.MAX_VALUE))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(0, 0, Short.MAX_VALUE)
                         .addComponent(btnAgregar)
-                        .addGap(57, 57, 57)
+                        .addGap(37, 37, 37)
                         .addComponent(btnEditar)
-                        .addGap(60, 60, 60)
+                        .addGap(30, 30, 30)
                         .addComponent(btnEliminar)
-                        .addGap(68, 68, 68)
-                        .addComponent(btnShow, javax.swing.GroupLayout.PREFERRED_SIZE, 59, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap())
+                        .addGap(48, 48, 48)
+                        .addComponent(btnshow, javax.swing.GroupLayout.PREFERRED_SIZE, 64, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(31, 31, 31))
+                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 371, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(20, Short.MAX_VALUE))
         );
 
         pack();
@@ -172,7 +177,25 @@ public class PotrodexListado extends javax.swing.JFrame {
         
                          
     }//GEN-LAST:event_btnEditarActionPerformed
-  private void formWindowOpened(java.awt.event.WindowEvent evt) {                                  
+
+    private void btnshowActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnshowActionPerformed
+        int selectedRow = tblPotromones.getSelectedRow();
+        if (selectedRow == -1) {
+        JOptionPane.showMessageDialog(this, "Por favor, selecciona un valor de la tabla");
+        return;
+}
+        int id = (int) tblPotromones.getValueAt(selectedRow, 0);
+        
+        try {
+            PotrocartaForm potrocardFrame = new PotrocartaForm(id);
+            potrocardFrame.setVisible(true);
+        } catch (Exception ex) {
+            JOptionPane.showMessageDialog(this, "Ocurrió un error al intentar mostrar el Potrocard: " + ex.getMessage());
+        }
+
+    }//GEN-LAST:event_btnshowActionPerformed
+ 
+    private void formWindowOpened(java.awt.event.WindowEvent evt) {                                  
         cargarTable();
         tblPotromones.removeColumn(tblPotromones.getColumnModel().getColumn(0));
     }   
@@ -234,7 +257,7 @@ public class PotrodexListado extends javax.swing.JFrame {
     private javax.swing.JButton btnAgregar;
     private javax.swing.JButton btnEditar;
     private javax.swing.JButton btnEliminar;
-    private javax.swing.JButton btnShow;
+    private javax.swing.JButton btnshow;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTable tblPotromones;

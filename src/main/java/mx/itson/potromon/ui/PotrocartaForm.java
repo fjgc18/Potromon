@@ -4,6 +4,12 @@
  */
 package mx.itson.potromon.ui;
 
+import java.awt.Image;
+import java.net.URL;
+import javax.swing.ImageIcon;
+import javax.swing.JOptionPane;
+import mx.itson.potromon.entidades.Potrodex;
+
 /**
  *
  * @author emili
@@ -13,10 +19,34 @@ public class PotrocartaForm extends javax.swing.JFrame {
     /**
      * Creates new form PotrocartaForm
      */
-    public PotrocartaForm() {
+    public PotrocartaForm( int idPotromon) {
         initComponents();
-    }
 
+    Potrodex potromon = Potrodex.getById(idPotromon);
+    if (potromon != null) {
+        cargarImagen(potromon.getRutaImagen());
+    } else {
+        JOptionPane.showMessageDialog(this, "No se encontró el Potromon");
+    }
+}
+    
+    private void cargarImagen(String rutaImagen) {
+        try {
+            if (rutaImagen != null && !rutaImagen.isEmpty()) {
+                
+                URL url = new URL(rutaImagen);
+                ImageIcon icon = new ImageIcon(url);
+                Image img = icon.getImage().getScaledInstance(200, 200, Image.SCALE_SMOOTH);
+                PotroImagen.setIcon(new ImageIcon(img));  // Cambia la imagen en el JLabel
+            } else {
+                PotroImagen.setText("Imagen no disponible");
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+            JOptionPane.showMessageDialog(this, "Error al cargar la imagen");
+        }
+    }
+    
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -26,17 +56,35 @@ public class PotrocartaForm extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        PotroImagen = new javax.swing.JLabel();
+        jLabel1 = new javax.swing.JLabel();
+
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+
+        jLabel1.setText("Prueba imagen potrocard");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 400, Short.MAX_VALUE)
+            .addGroup(layout.createSequentialGroup()
+                .addContainerGap(108, Short.MAX_VALUE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 152, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(105, 105, 105))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addComponent(PotroImagen, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(92, 92, 92))))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 300, Short.MAX_VALUE)
+            .addGroup(layout.createSequentialGroup()
+                .addGap(32, 32, 32)
+                .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 26, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addComponent(PotroImagen, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(24, Short.MAX_VALUE))
         );
 
         pack();
@@ -72,11 +120,13 @@ public class PotrocartaForm extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new PotrocartaForm().setVisible(true);
+                new PotrocartaForm(0).setVisible(true);
             }
         });
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JLabel PotroImagen;
+    private javax.swing.JLabel jLabel1;
     // End of variables declaration//GEN-END:variables
 }

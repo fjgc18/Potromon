@@ -17,12 +17,14 @@ import mx.itson.potromon.persistencia.Conexion;
  * @author emili
  */
 public class Potrodex {
+
     
     private int idPotromon;
     private String nombrePotromon;
     private String descripcion;
     private String poderes;
     private int puntaje;
+    private String rutaImagen;
     
     /**
      * Obtiene todos los Potromones de la base de datos
@@ -59,29 +61,26 @@ public class Potrodex {
      */
         public static Potrodex getById(int idPotromon) {
         Potrodex p = new Potrodex();
-        
-        try {
-           Connection conexion = Conexion.obtener();
-           String query = "Select idPotromon, nombrePotromon, descripcion, poderes, puntaje FROM potrodex WHERE idPotromon = ?";
-            PreparedStatement statement = conexion.prepareStatement(query);
-            statement.setInt(1, idPotromon);
-           
-            ResultSet rs = statement.executeQuery();
-            
-           while(rs.next()){
-               p.setIdPotromon(rs.getInt(1));
-               p.setNombrePotromon(rs.getString(2));
-               p.setDescripcion(rs.getString(3));
-               p.setPoderes(rs.getString(4));
-               p.setPuntaje(rs.getInt(5));
-           }
-           
-       } catch(Exception ex){
-           System.err.println("Ocurrio un error: " + ex.getMessage());
-       }   
-      return p;
-           
+    try {
+        Connection conexion = Conexion.obtener();
+        String query = "SELECT idPotromon, nombrePotromon, descripcion, poderes, puntaje, ruta_imagen FROM potrodex WHERE idPotromon = ?";
+        PreparedStatement statement = conexion.prepareStatement(query);
+        statement.setInt(1, idPotromon);
+        ResultSet rs = statement.executeQuery();
+        if (rs.next()) {
+            p.setIdPotromon(rs.getInt("idPotromon"));
+            p.setNombrePotromon(rs.getString("nombrePotromon"));
+            p.setDescripcion(rs.getString("descripcion"));
+            p.setPoderes(rs.getString("poderes"));
+            p.setPuntaje(rs.getInt("puntaje"));
+            p.setRutaImagen(rs.getString("ruta_imagen"));
+        }
+    } catch (Exception ex) {
+        System.err.println("Ocurrió un error: " + ex.getMessage());
     }
+    return p;
+}
+
         
             
             
@@ -245,4 +244,19 @@ public class Potrodex {
     public void setPuntaje(int puntaje) {
         this.puntaje = puntaje;
     }
+    
+    /**
+     * @return the rutaImagen
+     */
+    public String getRutaImagen() {
+        return rutaImagen;
+    }
+
+    /**
+     * @param rutaImagen the rutaImagen to set
+     */
+    public void setRutaImagen(String rutaImagen) {
+        this.rutaImagen = rutaImagen;
+    }
+    
 }

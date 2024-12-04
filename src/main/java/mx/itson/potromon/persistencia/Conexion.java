@@ -7,10 +7,12 @@ package mx.itson.potromon.persistencia;
 import java.sql.Connection;
 import java.sql.DriverManager;
 
+
 /**
  *
- * @author emili
+ * @author alex
  */
+
 public class Conexion {  
         public static Connection obtener(){
         Connection conexion =  null;
