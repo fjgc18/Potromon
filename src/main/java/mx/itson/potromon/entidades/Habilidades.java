@@ -19,6 +19,11 @@ import mx.itson.potromon.persistencia.Conexion;
  */
 public class Habilidades {
 
+     /**
+     * Obtiene una lista con todas las habilidades almacenadas en la base de datos
+     * 
+     * @return Lista de objetos {@link Habilidades} con las habilidades encontradas
+     */
          public static List<Habilidades> getAll(){
        List<Habilidades> habilidades = new ArrayList<>(); 
       try {
@@ -40,7 +45,12 @@ public class Habilidades {
        }   
       return habilidades;
 }
-    
+    /**
+     * Obtiene una habilidad específica mediante su ID.
+     * 
+     * @param idHabilidades Identificador de la habilidad a buscar.
+     * @return Un objeto {@link Habilidades} con la información de la habilidad encontrada o vacío si no existe.
+     */
       public static Habilidades getById(int idHabilidades) {
         Habilidades h = new Habilidades();
         
@@ -66,7 +76,16 @@ public class Habilidades {
       return h;
            
       }
-      
+
+    /**
+     * Guarda una nueva habilidad en la base de datos
+     * 
+     * @param habilidadesUno Primera habilidad a registrar
+     * @param habilidadesDos Segunda habilidad a registrar
+     * @param habilidadesTres Tercera habilidad a registrar
+     * @param habilidadesCuatro Cuarta habilidad a registrar
+     * @return true si la operación fue exitosa, false en caso contrario
+     */
       public static boolean save(String habilidadesUno, String habilidadesDos, String habilidadesTres, String habilidadesCuatro) {
        boolean resultado = false;
         try {
@@ -87,7 +106,13 @@ public class Habilidades {
         }
            return resultado;
     }
-    
+
+    /**
+     * Elimina una habilidad específica de la base de datos mediante su ID
+     * 
+     * @param idHabilidades Identificador de la habilidad a eliminar
+     * @return true si la operación fue exitosa, false en caso contrario
+     */
        public static boolean delete(int idHabilidades) {
        boolean resultado = false;
        
@@ -108,7 +133,17 @@ public class Habilidades {
            return resultado;
     }   
        
-       
+    /**
+     * Edita una habilidad específica en la base de datos
+     * 
+     * @param idHabilidades Identificador de la habilidad a editar
+     * @param habilidadesUno Nueva descripción para la primera habilidad
+     * @param habilidadesDos Nueva descripción para la segunda habilidad
+     * @param habilidadesTres Nueva descripción para la tercera habilidad
+     * @param habilidadesCuatro Nueva descripción para la cuarta habilidad
+     * @return true si la operación fue exitosa, false en caso contrario
+     */
+         
    public static boolean edit(int idHabilidades, String habilidadesUno, String habilidadesDos, String habilidadesTres, String habilidadesCuatro) {
     boolean resultado = false;
     try {
