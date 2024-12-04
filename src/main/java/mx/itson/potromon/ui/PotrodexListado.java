@@ -152,6 +152,7 @@ public class PotrodexListado extends javax.swing.JFrame {
         PotrodexForm form = new PotrodexForm(this, true, 0);
         form.setVisible(true);
 
+        cargarTable();
     }//GEN-LAST:event_btnAgregarActionPerformed
 
     private void btnEliminarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEliminarActionPerformed
