@@ -202,7 +202,7 @@
           <Color blue="0" green="0" red="0" type="rgb"/>
         </Property>
         <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-          <Image iconType="2" name="D:\Descargas\fondo.png"/>
+          <Image iconType="1" name="https://e1.pngegg.com/pngimages/163/576/png-clipart-lunareclipse-blanks-pokemon-trading-card-frame-thumbnail.png"/>
         </Property>
         <Property name="text" type="java.lang.String" value="jLabel2"/>
       </Properties>
