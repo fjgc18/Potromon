@@ -75,7 +75,7 @@ public class Habilidades {
      * @param idHabilidades Identificador de la habilidad a buscar.
      * @return Un objeto {@link Habilidades} con la información de la habilidad encontrada o vacío si no existe.
      */
-      /*public static Habilidades getById(int idHabilidades) {
+      public static Habilidades getById(int idHabilidades) {
         Habilidades h = new Habilidades();
         
         try {
@@ -99,7 +99,7 @@ public class Habilidades {
        }   
       return h;
            
-      }*/
+      }
 
     /**
      * Guarda una nueva habilidad en la base de datos
