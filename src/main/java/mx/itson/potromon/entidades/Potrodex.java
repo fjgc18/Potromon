@@ -184,12 +184,33 @@ public class Potrodex {
             resultado = statement.getUpdateCount() == 1;
             conexion.close();
         
+            
     } catch (Exception ex) {
         System.err.println("Ocurrió un error: " + ex.getMessage());
     }
     return resultado;
 }
+    
+     public static boolean actualizarPuntaje(int idPotromon, int puntaje) {
+        boolean resultado = false;
+        
+        try{
+                    
+            Connection conexion = Conexion.obtener();
+            String consulta = "UPDATE potrodex SET puntaje = ? WHERE idPotromon = ?";
+            PreparedStatement statement = conexion.prepareStatement(consulta);
+            statement.setInt(7, idPotromon);
+            statement.setInt(4, puntaje);
             
+            statement.execute();
+            resultado = statement.getUpdateCount() == 1;
+            conexion.close();
+            
+                }catch(Exception ex) {
+                    System.err.println("Ocurrio un error: " + ex.getMessage());
+                }
+                return resultado;
+}
     
     /**
      * @return the idPotromon

@@ -17,7 +17,13 @@ import mx.itson.potromon.persistencia.Conexion;
  * Esta clase contiene información sobre el entrenador y los Potromones que entrena
  * @author emili
  */
+
 public class Entrenador {
+    
+    private int idEntrenador;
+    private String nombreEntrenador;
+    private String aliasEntrenador;
+    private String puebloOrigen;
     
  public static List<Entrenador> getAll(){
        List<Entrenador> entrenadores = new ArrayList<>(); 
@@ -216,10 +222,5 @@ public class Entrenador {
     public void setPuebloOrigen(String puebloOrigen) {
         this.puebloOrigen = puebloOrigen;
     }
-    private int idEntrenador;
-    private String nombreEntrenador;
-    private String aliasEntrenador;
-    private String puebloOrigen;
-    
-    
+
 }

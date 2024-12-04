@@ -18,7 +18,13 @@ import mx.itson.potromon.persistencia.Conexion;
  * @author Thinkpad
  */
 public class Habilidades {
-
+    
+    private int idHabilidades;
+    private String habilidadesUno;
+    private String habilidadesDos;
+    private String habilidadesTres;
+    private String habilidadesCuatro;
+    
      /**
      * Obtiene una lista con todas las habilidades almacenadas en la base de datos
      * 
@@ -189,18 +195,7 @@ public class Habilidades {
     }
     return resultado;
 }    
-    
-    
-    
-    
-    
-    private int idHabilidades;
-    private String habilidadesUno;
-    private String habilidadesDos;
-    private String habilidadesTres;
-    private String habilidadesCuatro;
-  
-    
+ 
         /**
      * @return the idHabilidades
      */
