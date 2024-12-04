@@ -208,12 +208,6 @@ public class HabilidadesListado extends javax.swing.JFrame {
     }//GEN-LAST:event_btnPotromonesActionPerformed
 
     
-    private void formWindowOpened(java.awt.event.WindowEvent evt) {                                  
-        cargarTable();
-        tblHabilidades.removeColumn(tblHabilidades.getColumnModel().getColumn(0));
-    }   
-    
-    
     private void cargarTable(){
     List<Habilidades> habilidades = Habilidades.getAll();
     DefaultTableModel modeloTable = (DefaultTableModel) tblHabilidades.getModel();

@@ -40,10 +40,6 @@ public class EntrenadorListado extends javax.swing.JFrame {
      * 
      * @param evt Evento de apertura de ventana.
      */
-    private void formWindowOpened(java.awt.event.WindowEvent evt) {                                  
-        cargarTable();
-        tblEntrenadores.removeColumn(tblEntrenadores.getColumnModel().getColumn(0));
-    }   
     
     /**
      * Carga los datos de los entrenadores en la tabla.

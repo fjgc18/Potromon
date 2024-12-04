@@ -247,8 +247,8 @@ public class PotrodexForm extends javax.swing.JDialog {
     }//GEN-LAST:event_txtNombreActionPerformed
 
     private void btnHabilidadesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnHabilidadesActionPerformed
-       HabilidadesForm form = new HabilidadesForm(this, true, 0);
-       form.setVisible(true);
+       //HabilidadesForm form = new HabilidadesForm(this, true, 0);
+       //form.setVisible(true);
     }//GEN-LAST:event_btnHabilidadesActionPerformed
 
     /**

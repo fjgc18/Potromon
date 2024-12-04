@@ -30,30 +30,7 @@ public class Habilidades {
      * 
      * @return Lista de objetos {@link Habilidades} con las habilidades encontradas
      */
-        public static List<Habilidades> getList(int idPotromon){
-       List<Habilidades> habilidades = new ArrayList<>(); 
-      try {
-           Connection conexion = Conexion.obtener();
-           String consulta = "select idHablidades, habilidadUno, habilidadDos, habilidadTres, habilidadCuatro, idPotromon from habilidades where idPotromon = ?";
-           PreparedStatement statement = conexion.prepareStatement(consulta);
-           statement.setInt(1, idPotromon);
-          
-           ResultSet rs = statement.executeQuery();
-           while(rs.next()){
-               Habilidades h = new Habilidades();
-               h.setIdHabilidades(rs.getInt(1));
-               h.setHabilidadesUno(rs.getString(2));
-               h.setHabilidadesDos(rs.getString(3));
-               h.setHabilidadesTres(rs.getString(4));
-               h.setHabilidadesCuatro(rs.getString(5));
-               habilidades.add(h);
-           }
-           
-       } catch(Exception ex){
-           System.err.println("Ocurrio un error: " + ex.getMessage());
-       }   
-      return habilidades;
-}
+
          public static List<Habilidades> getAll(){
        List<Habilidades> habilidades = new ArrayList<>(); 
       try {

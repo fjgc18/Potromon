@@ -18,11 +18,11 @@ public class HabilidadesForm extends javax.swing.JDialog {
     /**
      * Creates new form HabilidadesForm
      */
-    public HabilidadesForm(java.awt.Window parent, boolean modal, int idHabilidades) {
-    super(parent, modal ? ModalityType.APPLICATION_MODAL : ModalityType.MODELESS);
-    initComponents();
-    this.idHabilidades = idHabilidades;
-
+    public HabilidadesForm(java.awt.Frame parent, boolean modal, int idEntrenador) {
+        super(parent, modal);
+        initComponents();
+    
+        this.idHabilidades = idHabilidades;
         if (idHabilidades > 0) {
             Habilidades habilidades = Habilidades.getById(idHabilidades);
             if (habilidades != null) {
