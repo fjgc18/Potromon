@@ -87,7 +87,7 @@ public class PotrodexListado extends javax.swing.JFrame {
             }
         });
 
-        btnEntrenadores.setText("Entrenadores");
+        btnEntrenadores.setText("Entrenadores Form");
         btnEntrenadores.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnEntrenadoresActionPerformed(evt);
@@ -103,20 +103,21 @@ public class PotrodexListado extends javax.swing.JFrame {
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 408, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
+                        .addGap(61, 61, 61)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                .addComponent(btnAgregar)
+                                .addComponent(btnEditar))
+                            .addGroup(layout.createSequentialGroup()
+                                .addGap(1, 1, 1)
+                                .addComponent(btnEliminar))))
+                    .addGroup(layout.createSequentialGroup()
                         .addGap(18, 18, 18)
                         .addComponent(btnshow))
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(35, 35, 35)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(btnEntrenadores)
-                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                                    .addComponent(btnAgregar)
-                                    .addComponent(btnEditar))
-                                .addGroup(layout.createSequentialGroup()
-                                    .addGap(1, 1, 1)
-                                    .addComponent(btnEliminar))))))
-                .addGap(46, 46, 46))
+                        .addGap(18, 18, 18)
+                        .addComponent(btnEntrenadores, javax.swing.GroupLayout.PREFERRED_SIZE, 141, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addGap(22, 22, 22))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 357, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -137,9 +138,9 @@ public class PotrodexListado extends javax.swing.JFrame {
                         .addComponent(btnEditar)
                         .addGap(18, 18, 18)
                         .addComponent(btnEliminar)
-                        .addGap(39, 39, 39)
-                        .addComponent(btnEntrenadores)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(btnEntrenadores)
+                        .addGap(18, 18, 18)
                         .addComponent(btnshow, javax.swing.GroupLayout.PREFERRED_SIZE, 64, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(31, 31, 31)))
                 .addContainerGap(20, Short.MAX_VALUE))
@@ -213,6 +214,7 @@ public class PotrodexListado extends javax.swing.JFrame {
     private void btnEntrenadoresActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEntrenadoresActionPerformed
         EntrenadorListado form = new EntrenadorListado();
         form.setVisible(true);
+        dispose();
     }//GEN-LAST:event_btnEntrenadoresActionPerformed
  
     private void formWindowOpened(java.awt.event.WindowEvent evt) {                                  
@@ -230,7 +232,6 @@ public class PotrodexListado extends javax.swing.JFrame {
         p.getIdPotromon(),
         p.getNombrePotromon(),
         p.getDescripcion(),
-        p.getPoderes(),
         p.getPuntaje()
         });
           

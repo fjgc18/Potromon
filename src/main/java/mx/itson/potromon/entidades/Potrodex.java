@@ -22,7 +22,6 @@ public class Potrodex {
     private int idPotromon;
     private String nombrePotromon;
     private String descripcion;
-    private String poderes;
     private int puntaje;
     private String rutaImagen;
     private Entrenador entrenador;
@@ -38,21 +37,18 @@ public class Potrodex {
       try {
            Connection conexion = Conexion.obtener();
            Statement statement = conexion.createStatement();
-           ResultSet rs = statement.executeQuery("Select idPotromon, nombrePotromon, descripcion, poderes, puntaje, ruta_imagen, idEntrenador FROM potrodex");
+           ResultSet rs = statement.executeQuery("Select idPotromon, nombrePotromon, descripcion, puntaje, ruta_imagen, idEntrenador FROM potrodex");
            while(rs.next()){
                Potrodex p = new Potrodex();
                p.setIdPotromon(rs.getInt(1));
                p.setNombrePotromon(rs.getString(2));
                p.setDescripcion(rs.getString(3));
-               p.setPoderes(rs.getString(4));
-               p.setPuntaje(rs.getInt(5));
-               p.setRutaImagen(rs.getString(6));
-               
-               Entrenador e = Entrenador.getById(rs.getInt(7));
+               p.setPuntaje(rs.getInt(4));
+               p.setRutaImagen(rs.getString(5));
+               Entrenador e = Entrenador.getById(rs.getInt(6));
                p.setEntrenador(e);
-               
-            //List<Habilidades> habilidades = Habilidades.getList(rs.getInt(8));
-            //p.setHabilidades(habilidades);
+               //List<Habilidades> habilidades = Habilidades.getList(rs.getInt(8));
+               //p.setHabilidades(habilidades);
                
                potrodex.add(p);
            }
@@ -73,7 +69,7 @@ public class Potrodex {
         Potrodex p = new Potrodex();
     try {
         Connection conexion = Conexion.obtener();
-        String query = "SELECT idPotromon, nombrePotromon, descripcion, poderes, puntaje, ruta_imagen, idEntrenador FROM potrodex WHERE idPotromon = ?";
+        String query = "SELECT idPotromon, nombrePotromon, descripcion, puntaje, ruta_imagen, idEntrenador FROM potrodex WHERE idPotromon = ?";
         PreparedStatement statement = conexion.prepareStatement(query);
         statement.setInt(1, idPotromon);
         ResultSet rs = statement.executeQuery();
@@ -81,10 +77,8 @@ public class Potrodex {
             p.setIdPotromon(rs.getInt("idPotromon"));
             p.setNombrePotromon(rs.getString("nombrePotromon"));
             p.setDescripcion(rs.getString("descripcion"));
-            p.setPoderes(rs.getString("poderes"));
             p.setPuntaje(rs.getInt("puntaje"));
             p.setRutaImagen(rs.getString("ruta_imagen"));
-            
             int idEntrenador = rs.getInt("idEntrenador");
             Entrenador entrenador = Entrenador.getById(idEntrenador);
             p.setEntrenador(entrenador); 
@@ -106,20 +100,19 @@ public class Potrodex {
   * @param puntaje valor del puntaje del potrodex
   * @return true so se guardo exitosamente; de lo contrario, false.
   */          
-  public static boolean save(String nombrePotromon, String descripcion, String poderes, int puntaje, String rutaImagen, Entrenador entrenador) {
+  public static boolean save(String nombrePotromon, String descripcion, int puntaje, String rutaImagen, Entrenador entrenador) {
        boolean resultado = false;
        
         
         try {
                 Connection conexion = Conexion.obtener();
-                String consulta = "INSERT INTO potrodex (nombrePotromon, descripcion, poderes, puntaje, ruta_imagen, idEntrenador) VALUES (?,?,?,?,?,?)";
+                String consulta = "INSERT INTO potrodex (nombrePotromon, descripcion, puntaje, ruta_imagen, idEntrenador) VALUES (?,?,?,?,?,?)";
                 PreparedStatement statement = conexion.prepareStatement(consulta);
                 statement.setString(1, nombrePotromon);
                 statement.setString(2, descripcion);
-                statement.setString(3, poderes);
-                statement.setInt(4, puntaje);
-                statement.setString(5, rutaImagen);
-                statement.setInt(6, entrenador.getIdEntrenador());
+                statement.setInt(3, puntaje);
+                statement.setString(4, rutaImagen);
+                statement.setInt(5, entrenador.getIdEntrenador());
                 
                 statement.execute();
                 resultado = statement.getUpdateCount() == 1;
@@ -164,22 +157,18 @@ public class Potrodex {
      * @param puntaje el nuevo puntaje del Potrodex
      * @return true si el responsable se actualizó correctamente, false en caso contrario.
      */
- public static boolean edit(int idPotromon, String nombrePotromon, String descripcion, String poderes, int puntaje, String rutaImagen, Entrenador entrenador) {
+ public static boolean edit(int idPotromon, String nombrePotromon, String descripcion, int puntaje, String rutaImagen, Entrenador entrenador) {
     boolean resultado = false;
     try {
             Connection conexion = Conexion.obtener();
-            String consulta = "UPDATE potrodex SET nombrePotromon = ?, descripcion = ?, poderes = ?, puntaje = ?, ruta_imagen = ?, idEntrenador = ? WHERE idPotromon = ?";
+            String consulta = "UPDATE potrodex SET nombrePotromon = ?, descripcion = ?, puntaje = ?, ruta_imagen = ?, idEntrenador = ? WHERE idPotromon = ?";
             PreparedStatement statement = conexion.prepareStatement(consulta);
             statement.setString(1, nombrePotromon);
             statement.setString(2, descripcion);
-            statement.setString(3, poderes);
-            statement.setInt(4, puntaje);
-            statement.setString(5, rutaImagen);
-            statement.setInt(6, entrenador.getIdEntrenador());
-            statement.setInt(7, idPotromon);
-            
-            
-
+            statement.setInt(3, puntaje);
+            statement.setString(4, rutaImagen);
+            statement.setInt(5, entrenador.getIdEntrenador());
+            statement.setInt(6, idPotromon);
             statement.execute();
             resultado = statement.getUpdateCount() == 1;
             conexion.close();
@@ -252,20 +241,6 @@ public class Potrodex {
      */
     public void setDescripcion(String descripcion) {
         this.descripcion = descripcion;
-    }
-
-    /**
-     * @return the poderes
-     */
-    public String getPoderes() {
-        return poderes;
-    }
-
-    /**
-     * @param poderes the poderes to set
-     */
-    public void setPoderes(String poderes) {
-        this.poderes = poderes;
     }
 
     /**

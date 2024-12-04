@@ -30,7 +30,6 @@ public class PotrodexForm extends javax.swing.JDialog {
             if (potrodex != null) {
                 txtNombre.setText(potrodex.getNombrePotromon());
                 txtDescripcion.setText(potrodex.getDescripcion());
-                txtPoderes.setText(potrodex.getPoderes());
                 txtPuntaje.setText(String.valueOf(potrodex.getPuntaje()));
                 //cmbEntrenador.
             }
@@ -71,10 +70,10 @@ public class PotrodexForm extends javax.swing.JDialog {
         txtDescripcion = new java.awt.TextField();
         jLabel3 = new javax.swing.JLabel();
         jLabel4 = new javax.swing.JLabel();
-        txtPoderes = new java.awt.TextField();
         txtPuntaje = new java.awt.TextField();
         btnAceptar = new javax.swing.JButton();
         cmbEntrenador = new javax.swing.JComboBox<>();
+        btnHabilidades = new javax.swing.JButton();
         txtImagen = new javax.swing.JTextField();
         jLabel6 = new javax.swing.JLabel();
         jLabel7 = new javax.swing.JLabel();
@@ -114,13 +113,12 @@ public class PotrodexForm extends javax.swing.JDialog {
         getContentPane().add(txtDescripcion, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 190, 258, 49));
 
         jLabel3.setForeground(new java.awt.Color(0, 0, 0));
-        jLabel3.setText("Poderes:");
+        jLabel3.setText("Habilidades:");
         getContentPane().add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 390, -1, -1));
 
         jLabel4.setForeground(new java.awt.Color(0, 0, 0));
         jLabel4.setText("Puntaje:");
         getContentPane().add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 470, -1, -1));
-        getContentPane().add(txtPoderes, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 410, 370, 40));
 
         txtPuntaje.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -141,6 +139,8 @@ public class PotrodexForm extends javax.swing.JDialog {
         });
         getContentPane().add(btnAceptar, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 600, 130, 40));
 
+        cmbEntrenador.setBackground(new java.awt.Color(255, 255, 255));
+        cmbEntrenador.setForeground(new java.awt.Color(0, 0, 0));
         cmbEntrenador.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 cmbEntrenadorActionPerformed(evt);
@@ -148,6 +148,19 @@ public class PotrodexForm extends javax.swing.JDialog {
         });
         getContentPane().add(cmbEntrenador, new org.netbeans.lib.awtextra.AbsoluteConstraints(310, 510, 119, -1));
 
+        btnHabilidades.setBackground(new java.awt.Color(255, 255, 255));
+        btnHabilidades.setFont(new java.awt.Font("Rockwell Extra Bold", 0, 12)); // NOI18N
+        btnHabilidades.setForeground(new java.awt.Color(0, 0, 0));
+        btnHabilidades.setText("Habilidades");
+        btnHabilidades.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnHabilidadesActionPerformed(evt);
+            }
+        });
+        getContentPane().add(btnHabilidades, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 410, 420, 40));
+
+        txtImagen.setBackground(new java.awt.Color(255, 255, 255));
+        txtImagen.setForeground(new java.awt.Color(0, 0, 0));
         txtImagen.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 txtImagenActionPerformed(evt);
@@ -193,7 +206,6 @@ public class PotrodexForm extends javax.swing.JDialog {
     private void btnAceptarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAceptarActionPerformed
         String nombre = txtNombre.getText();
         String descripcion = txtDescripcion.getText();
-        String poderes = txtPoderes.getText();
         String Imagen = txtImagen.getText();
         int puntaje = Integer.parseInt(txtPuntaje.getText());
 
@@ -206,8 +218,8 @@ public class PotrodexForm extends javax.swing.JDialog {
         potrodex.setEntrenador(entrenadorSeleccionado);
 
         boolean resultado = this.idPotrodex == 0 ?
-        Potrodex.save(nombre, descripcion, poderes, puntaje, Imagen, entrenadorSeleccionado):
-        Potrodex.edit(idPotrodex, nombre, descripcion, poderes, puntaje, Imagen, entrenadorSeleccionado);
+        Potrodex.save(nombre, descripcion, puntaje, Imagen, entrenadorSeleccionado):
+        Potrodex.edit(idPotrodex, nombre, descripcion, puntaje, Imagen, entrenadorSeleccionado);
         if(resultado){
             JOptionPane.showMessageDialog (this,"El registro se guardo correctamente", "Registro guardado",JOptionPane.INFORMATION_MESSAGE);
             dispose();
@@ -225,6 +237,11 @@ public class PotrodexForm extends javax.swing.JDialog {
     private void txtNombreActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtNombreActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_txtNombreActionPerformed
+
+    private void btnHabilidadesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnHabilidadesActionPerformed
+       //HabilidadesForm form = new HabilidadesForm(this, true, int idHabilidades);
+       //form.setVisible(true);
+    }//GEN-LAST:event_btnHabilidadesActionPerformed
 
     /**
      * @param args the command line arguments
@@ -270,6 +287,7 @@ public class PotrodexForm extends javax.swing.JDialog {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnAceptar;
+    private javax.swing.JButton btnHabilidades;
     private javax.swing.JComboBox<Entrenador> cmbEntrenador;
     private javax.swing.JLabel fondoo;
     private javax.swing.JLabel jLabel1;
@@ -282,7 +300,6 @@ public class PotrodexForm extends javax.swing.JDialog {
     private java.awt.TextField txtDescripcion;
     private javax.swing.JTextField txtImagen;
     private java.awt.TextField txtNombre;
-    private java.awt.TextField txtPoderes;
     private java.awt.TextField txtPuntaje;
     // End of variables declaration//GEN-END:variables
 }
