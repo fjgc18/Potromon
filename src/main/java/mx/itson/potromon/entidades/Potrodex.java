@@ -36,7 +36,7 @@ public class Potrodex {
       try {
            Connection conexion = Conexion.obtener();
            Statement statement = conexion.createStatement();
-           ResultSet rs = statement.executeQuery("Select idPotromon, nombrePotromon, descripcion, poderes, puntaje FROM potrodex");
+           ResultSet rs = statement.executeQuery("Select idPotromon, nombrePotromon, descripcion, poderes, puntaje, ruta_imagen FROM potrodex");
            while(rs.next()){
                Potrodex p = new Potrodex();
                p.setIdPotromon(rs.getInt(1));
@@ -44,6 +44,7 @@ public class Potrodex {
                p.setDescripcion(rs.getString(3));
                p.setPoderes(rs.getString(4));
                p.setPuntaje(rs.getInt(5));
+               p.setRutaImagen(rs.getString(6));
                potrodex.add(p);
            }
            
@@ -92,18 +93,19 @@ public class Potrodex {
   * @param puntaje valor del puntaje del potrodex
   * @return true so se guardo exitosamente; de lo contrario, false.
   */          
-  public static boolean save(String nombrePotromon, String descripcion, String poderes, int puntaje) {
+  public static boolean save(String nombrePotromon, String descripcion, String poderes, int puntaje, String rutaImagen) {
        boolean resultado = false;
        
         
         try {
                 Connection conexion = Conexion.obtener();
-                String consulta = "INSERT INTO potrodex (nombrePotromon, descripcion, poderes, puntaje) VALUES (?,?,?,?)";
+                String consulta = "INSERT INTO potrodex (nombrePotromon, descripcion, poderes, puntaje, ruta_imagen) VALUES (?,?,?,?,?)";
                 PreparedStatement statement = conexion.prepareStatement(consulta);
                 statement.setString(1, nombrePotromon);
                 statement.setString(2, descripcion);
                 statement.setString(3, poderes);
                 statement.setInt(4, puntaje);
+                statement.setString(5, rutaImagen);
                 
                 statement.execute();
                 resultado = statement.getUpdateCount() == 1;
@@ -148,17 +150,19 @@ public class Potrodex {
      * @param puntaje el nuevo puntaje del Potrodex
      * @return true si el responsable se actualizó correctamente, false en caso contrario.
      */
- public static boolean edit(int idPotromon, String nombrePotromon, String descripcion, String poderes, int puntaje) {
+ public static boolean edit(int idPotromon, String nombrePotromon, String descripcion, String poderes, int puntaje, String rutaImagen) {
     boolean resultado = false;
     try {
             Connection conexion = Conexion.obtener();
-            String consulta = "UPDATE potrodex SET nombrePotromon = ?, descripcion = ?, poderes = ?, puntaje = ? WHERE idPotromon = ?";
+            String consulta = "UPDATE potrodex SET nombrePotromon = ?, descripcion = ?, poderes = ?, puntaje = ?, ruta_imagen = ? WHERE idPotromon = ?";
             PreparedStatement statement = conexion.prepareStatement(consulta);
             statement.setString(1, nombrePotromon);
             statement.setString(2, descripcion);
             statement.setString(3, poderes);
             statement.setInt(4, puntaje);
-            statement.setInt(5, idPotromon);
+            statement.setString(5, rutaImagen);
+            statement.setInt(6, idPotromon);
+            
 
             statement.execute();
             resultado = statement.getUpdateCount() == 1;
