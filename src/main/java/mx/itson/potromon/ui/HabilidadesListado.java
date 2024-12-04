@@ -11,14 +11,17 @@ import mx.itson.potromon.entidades.Habilidades;
 import mx.itson.potromon.entidades.Potrodex;
 
 /**
+ * Clase que representa la interfaz gráfica para listar y gestionar habilidades.
+ * Permite agregar, editar y eliminar habilidades, así como navegar a otras secciones de la aplicación.
  *
  * @author bruns
  */
 public class HabilidadesListado extends javax.swing.JFrame {
 
     /**
-     * Creates new form HabilidadesListado
-     */
+     * Crea una nueva instancia de HabilidadesListado.
+     * Inicializa los componentes de la interfaz y carga la tabla de habilidades.
+    */
     public HabilidadesListado() {
         initComponents();
         cargarTable();
@@ -152,13 +155,28 @@ public class HabilidadesListado extends javax.swing.JFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
-
+    /**
+     * Maneja el evento de acción del botón "Agregar".
+     * Este método crea una nueva instancia de HabilidadesForm en modo modal
+     * y la muestra al usuario. Después de que el formulario se cierra,
+     * se llama al método cargarTable() para actualizar la tabla de habilidades.
+     *
+     * @param evt El evento de acción que se genera al presionar el botón.
+     */
     private void btnAgregarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAgregarActionPerformed
         HabilidadesForm form = new HabilidadesForm(this, true, 0);
         form.setVisible(true);
         cargarTable();
     }//GEN-LAST:event_btnAgregarActionPerformed
-
+    /**
+     * Maneja el evento de acción del botón "Editar".
+     * Este método obtiene la fila seleccionada en la tabla de habilidades,
+     * extrae el ID de la habilidad y crea una nueva instancia de HabilidadesForm
+     * en modo modal con el ID de la habilidad seleccionada. Luego, muestra el formulario
+     * y actualiza la tabla de habilidades después de que se cierra el formulario.
+     *
+     * @param evt El evento de acción que se genera al presionar el botón.
+     */
     private void btnEditarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEditarActionPerformed
         int renglon = tblHabilidades.getSelectedRow();
         int idHabilidades = Integer.parseInt(tblHabilidades.getModel().getValueAt(renglon, 0).toString());
@@ -170,6 +188,16 @@ public class HabilidadesListado extends javax.swing.JFrame {
 
     }//GEN-LAST:event_btnEditarActionPerformed
 
+    /**
+     * Maneja el evento de acción del botón "Eliminar".
+     * Este método obtiene la fila seleccionada en la tabla de habilidades,
+     * extrae el ID de la habilidad y muestra un cuadro de confirmación para
+     * eliminar el registro. Si el usuario confirma, intenta eliminar el registro
+     * y muestra un mensaje de éxito o error según corresponda. Finalmente,
+     * actualiza la tabla de habilidades.
+     *
+     * @param evt El evento de acción que se genera al presionar el botón.
+     */
     private void btnEliminarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEliminarActionPerformed
         int renglon =tblHabilidades.getSelectedRow();
         int idHabilidades = Integer.parseInt(tblHabilidades.getModel().getValueAt(renglon, 0).toString());
@@ -194,20 +222,34 @@ public class HabilidadesListado extends javax.swing.JFrame {
 
         }
     }//GEN-LAST:event_btnEliminarActionPerformed
-
+    /**
+     * Maneja el evento de acción del botón "Entrenadores".
+     * Este método crea una nueva instancia de EntrenadorListado y la muestra al usuario.
+     * Luego, cierra la ventana actual.
+     *
+     * @param evt El evento de acción que se genera al presionar el botón.
+     */
     private void btnEntrenadoresActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEntrenadoresActionPerformed
         EntrenadorListado listado = new EntrenadorListado();
         listado.setVisible(true);
         dispose();
     }//GEN-LAST:event_btnEntrenadoresActionPerformed
+    /**
+     * Maneja el evento de acción del botón "Potromones".
+     * Este método crea una nueva instancia de PotrodexListado y la muestra al usuario y cierra la ventana actual.
 
+     * @param evt El evento de acción que se genera al presionar el botón.
+     */
     private void btnPotromonesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnPotromonesActionPerformed
        PotrodexListado listado = new PotrodexListado();
        listado.setVisible(true);
        dispose();
     }//GEN-LAST:event_btnPotromonesActionPerformed
 
-    
+    /**
+     * Carga la tabla de habilidades con los datos obtenidos de la base de datos.
+     * Este método obtiene una lista de todas las habilidades y las agrega a la tabla.
+     */
     private void cargarTable(){
     List<Habilidades> habilidades = Habilidades.getAll();
     DefaultTableModel modeloTable = (DefaultTableModel) tblHabilidades.getModel();

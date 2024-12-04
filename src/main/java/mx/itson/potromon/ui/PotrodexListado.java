@@ -10,13 +10,16 @@ import javax.swing.table.DefaultTableModel;
 import mx.itson.potromon.entidades.Potrodex;
 
 /**
- *
+ * Clase que representa la interfaz gráfica para listar los Potromones en el Potrodex.
+ * Permite agregar, editar, eliminar y mostrar detalles de los Potromones.
+ * 
  * @author emili
  */
 public class PotrodexListado extends javax.swing.JFrame {
 
     /**
-     * Creates new form PotrodexListado
+     * Crea una nueva instancia de PotrodexListado.
+     * Inicializa los componentes de la interfaz y carga la tabla con los Potromones.
      */
     public PotrodexListado() {
         initComponents();
@@ -148,6 +151,12 @@ public class PotrodexListado extends javax.swing.JFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+    /**
+     * Maneja el evento de acción del botón "Agregar".
+     * Este método abre un nuevo formulario para agregar un Potromon.
+     * 
+     * @param evt El evento de acción que se genera al presionar el botón.
+     */
 
     private void btnAgregarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAgregarActionPerformed
         PotrodexForm form = new PotrodexForm(this, true, 0);
@@ -155,7 +164,12 @@ public class PotrodexListado extends javax.swing.JFrame {
 
         cargarTable();
     }//GEN-LAST:event_btnAgregarActionPerformed
-
+    /**
+     * Maneja el evento de acción del botón "Eliminar".
+     * Este método elimina el Potromon seleccionado de la tabla.
+     * 
+     * @param evt El evento de acción que se genera al presionar el botón.
+     */
     private void btnEliminarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEliminarActionPerformed
         int renglon =tblPotromones.getSelectedRow();
         int idPotrodex = Integer.parseInt(tblPotromones.getModel().getValueAt(renglon, 0).toString());
@@ -170,7 +184,7 @@ public class PotrodexListado extends javax.swing.JFrame {
                       "El registro se elimino con exito",
                       "Registro eliminado con exito",
                            JOptionPane.INFORMATION_MESSAGE);
-                   cargarTable();
+                   cargarTable();   // Recarga la tabla después de eliminar
                } else {
                      JOptionPane.showMessageDialog(this,
                            "Ocurrio un errro al eliminar el registro",
@@ -181,7 +195,12 @@ public class PotrodexListado extends javax.swing.JFrame {
                                       
       }
     }//GEN-LAST:event_btnEliminarActionPerformed
-
+    /**
+     * Maneja el evento de acción del botón "Editar".
+     * Este método abre un formulario para editar el Potromon seleccionado.
+     * 
+     * @param evt El evento de acción que se genera al presionar el botón.
+     */
     private void btnEditarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEditarActionPerformed
        int renglon = tblPotromones.getSelectedRow();
        int idPotrodex = Integer.parseInt(tblPotromones.getModel().getValueAt(renglon, 0).toString());
@@ -189,11 +208,16 @@ public class PotrodexListado extends javax.swing.JFrame {
        PotrodexForm form = new PotrodexForm(this, true, idPotrodex);
        form.setVisible(true);
         
-       cargarTable();
+       cargarTable(); // Recarga la tabla después de editar
         
                          
     }//GEN-LAST:event_btnEditarActionPerformed
-
+    /**
+     * Maneja el evento de acción del botón "Show Potrocard".
+     * Este método muestra la carta del Potromon seleccionado.
+     * 
+     * @param evt El evento de acción que se genera al presionar el botón.
+     */
     private void btnshowActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnshowActionPerformed
         int selectedRow = tblPotromones.getSelectedRow();
         if (selectedRow == -1) {
@@ -210,23 +234,36 @@ public class PotrodexListado extends javax.swing.JFrame {
         }
 
     }//GEN-LAST:event_btnshowActionPerformed
-
+    /**
+     * Maneja el evento de acción del botón "Entrenadores Form".
+     * Este método abre el formulario de listado de entrenadores y cierra la ventana actual.
+     * 
+     * @param evt El evento de acción que se genera al presionar el botón.
+     */
     private void btnEntrenadoresActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEntrenadoresActionPerformed
         EntrenadorListado form = new EntrenadorListado();
         form.setVisible(true);
-        dispose();
+        dispose(); // Cierra la ventana actual
     }//GEN-LAST:event_btnEntrenadoresActionPerformed
- 
+    /**
+     * Este método se llama cuando se abre la ventana.
+     * Carga la tabla con los Potromones y oculta la columna de ID.
+     * 
+     * @param evt El evento de ventana que se genera al abrir.
+     */
     private void formWindowOpened(java.awt.event.WindowEvent evt) {                                  
         cargarTable();
-        tblPotromones.removeColumn(tblPotromones.getColumnModel().getColumn(0));
+        tblPotromones.removeColumn(tblPotromones.getColumnModel().getColumn(0)); // Oculta la columna de ID
     }   
     
-    
+     /**
+     * Carga los Potromones en la tabla desde la base de datos.
+     * Este método obtiene todos los Potromones y los agrega al modelo de la tabla.
+     */
     private void cargarTable(){
-    List<Potrodex> potrodex = Potrodex.getAll();
+    List<Potrodex> potrodex = Potrodex.getAll();    // Obtiene todos los Potromones
     DefaultTableModel modeloTable = (DefaultTableModel) tblPotromones.getModel();
-    modeloTable.setRowCount(0);
+    modeloTable.setRowCount(0); // Limpia la tabla
     for(Potrodex p : potrodex) {
         modeloTable.addRow(new Object[] {
         p.getIdPotromon(),
@@ -240,7 +277,9 @@ public class PotrodexListado extends javax.swing.JFrame {
 }
     
     /**
-     * @param args the command line arguments
+     * Método principal que inicia la aplicación y muestra la ventana de PotrodexListado.
+     * 
+     * @param args Los argumentos de línea de comandos.
      */
     public static void main(String args[]) {
         /* Set the Nimbus look and feel */
@@ -266,7 +305,7 @@ public class PotrodexListado extends javax.swing.JFrame {
         }
         //</editor-fold>
 
-        /* Create and display the form */
+        /* Crea y muestra el formulario */
         java.awt.EventQueue.invokeLater(new Runnable() {
             @Override
             public void run() {

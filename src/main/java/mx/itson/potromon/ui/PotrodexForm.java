@@ -10,21 +10,27 @@ import mx.itson.potromon.entidades.Entrenador;
 import mx.itson.potromon.entidades.Potrodex;
 
 /**
- *
+ * Clase que representa un formulario para registrar o editar un Potromon.
+ * Esta clase extiende JDialog y permite al usuario ingresar información sobre un Potromon.
+ * 
  * @author emili
- */
+*/
 public class PotrodexForm extends javax.swing.JDialog {
     
     int idPotrodex;
     /**
-     * Creates new form PotrodexForm
+     * Crea una nueva instancia de PotrodexForm.
+     * 
+     * @param parent El marco padre del diálogo.
+     * @param modal Indica si el diálogo es modal.
+     * @param idPotrodex El ID del Potromon a editar, si es mayor que 0.
      */
     public PotrodexForm(java.awt.Frame parent, boolean modal, int idPotrodex) {
         super(parent, modal);
         initComponents();
         this.idPotrodex = idPotrodex;
         
-        
+        // Carga la información del Potromon si el ID es mayor que 0
         if (idPotrodex > 0) {
             Potrodex potrodex = Potrodex.getById(idPotrodex);
             if (potrodex != null) {
@@ -32,9 +38,11 @@ public class PotrodexForm extends javax.swing.JDialog {
                 txtDescripcion.setText(potrodex.getDescripcion());
                 txtPoderes.setText(potrodex.getPoderes());
                 txtPuntaje.setText(String.valueOf(potrodex.getPuntaje()));
+                // Se puede cargar el entrenador aquí si es necesario
                 //cmbEntrenador.
             }
         }
+        // Carga los entrenadores en un hilo separado
                 Thread thread = new Thread( () -> {
                 
        cargarEntrenadores();
@@ -42,11 +50,13 @@ public class PotrodexForm extends javax.swing.JDialog {
         });
         thread.start();
         
-       
+}        
         
-            
         
-    }
+    /**
+    * Carga la lista de entrenadores en el combo box.
+    */    
+    
     public void cargarEntrenadores() {
     List <Entrenador> entrenadores = Entrenador.getAll();
     for (Entrenador e : entrenadores){
@@ -209,7 +219,12 @@ public class PotrodexForm extends javax.swing.JDialog {
     private void txtPuntajeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtPuntajeActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_txtPuntajeActionPerformed
-
+    /**
+     * Maneja el evento de acción del botón "Aceptar".
+     * Este método guarda o edita la información del Potromon según el ID.
+     * 
+     * @param evt El evento de acción que se genera al presionar el botón.
+     */
     private void btnAceptarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAceptarActionPerformed
         String nombre = txtNombre.getText();
         String descripcion = txtDescripcion.getText();
@@ -245,14 +260,21 @@ public class PotrodexForm extends javax.swing.JDialog {
     private void txtNombreActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtNombreActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_txtNombreActionPerformed
-
+    /**
+     * Maneja el evento de acción del botón "Habilidades".
+     * Este método puede abrir un formulario para gestionar las habilidades del Potromon.
+     * 
+     * @param evt El evento de acción que se genera al presionar el botón.
+     */
     private void btnHabilidadesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnHabilidadesActionPerformed
        //HabilidadesForm form = new HabilidadesForm(this, true, 0);
        //form.setVisible(true);
     }//GEN-LAST:event_btnHabilidadesActionPerformed
 
     /**
-     * @param args the command line arguments
+     * Método principal que inicia la aplicación y muestra el diálogo de PotrodexForm.
+     * 
+     * @param args Los argumentos de línea de comandos.
      */
     public static void main(String args[]) {
         /* Set the Nimbus look and feel */
@@ -278,17 +300,17 @@ public class PotrodexForm extends javax.swing.JDialog {
         }
         //</editor-fold>
 
-        /* Create and display the dialog */
+        // Crea y muestra el diálogo 
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
                 PotrodexForm dialog = new PotrodexForm(new javax.swing.JFrame(), true, 0);
                 dialog.addWindowListener(new java.awt.event.WindowAdapter() {
                     @Override
                     public void windowClosing(java.awt.event.WindowEvent e) {
-                        System.exit(0);
+                        System.exit(0);  //Cierra la aplicación al cerrar el diálogo
                     }
                 });
-                dialog.setVisible(true);
+                dialog.setVisible(true); // Muestra el diálogo
             }
         });
     }

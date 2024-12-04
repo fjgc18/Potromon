@@ -17,12 +17,17 @@ import mx.itson.potromon.entidades.Potrodex;
 /**
  *
  * @author emili
+ * Clase que representa la interfaz gráfica para mostrar la carta de un Potromon.
+ * Permite visualizar información del Potromon, sus habilidades y actualizar su puntaje.
  */
 public class PotrocartaForm extends javax.swing.JFrame {
   private int puntaje;
     private int idPotromon;
     /**
-     * Creates new form PotrocartaForm
+     * Crea una nueva instancia de PotrocartaForm.
+     * Inicializa los componentes de la interfaz y carga la información del Potromon.
+     *Como su puntuaje, nombre, imagen, habilidades, etc.
+     * @param idPotromon El ID del Potromon a mostrar.
      */
     public PotrocartaForm( int idPotromon) {
         initComponents();
@@ -57,7 +62,11 @@ public class PotrocartaForm extends javax.swing.JFrame {
         JOptionPane.showMessageDialog(this, "No se encontró el Potromon");
     }
 }
-    
+    /**
+     * Carga la imagen del Potromon en el JLabel correspondiente.
+     *
+     * @param rutaImagen La ruta de la imagen a cargar.
+     */
     private void cargarImagen(String rutaImagen) {
         try {
             if (rutaImagen != null && !rutaImagen.isEmpty()) {
@@ -191,7 +200,13 @@ public class PotrocartaForm extends javax.swing.JFrame {
         setSize(new java.awt.Dimension(362, 498));
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
-
+    /**
+     * Maneja el evento de acción del botón "Restar".
+     * Este método reduce el puntaje del Potromon en 10, actualiza la etiqueta
+     * y guarda el nuevo puntaje en la base de datos.
+     *
+     * @param evt El evento de acción que se genera al presionar el botón.
+     */
     private void btnRestarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRestarActionPerformed
         if (puntaje >= 10) { 
         puntaje -= 10; 
@@ -206,7 +221,13 @@ public class PotrocartaForm extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(this, "El puntaje no puede ser menor a 0", "Advertencia", JOptionPane.WARNING_MESSAGE);
     }
     }//GEN-LAST:event_btnRestarActionPerformed
-
+    /**
+     * Maneja el evento de acción del botón "Sumar".
+     * Este método incrementa el puntaje del Potromon en 10, actualiza la etiqueta
+     * y guarda el nuevo puntaje en la base de datos.
+     *
+     * @param evt El evento de acción que se genera al presionar el botón.
+     */
     private void btnSumarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSumarActionPerformed
         puntaje += 10;
         lblPuntaje.setText(String.valueOf(puntaje));
@@ -217,7 +238,10 @@ public class PotrocartaForm extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(this, "Hubo un error al actualizar el puntaje", "Error", JOptionPane.ERROR_MESSAGE);
             }
     }//GEN-LAST:event_btnSumarActionPerformed
-    
+    /**
+     * Carga la tabla de habilidades con los datos obtenidos de la base de datos.
+     * Este método obtiene una lista de todas las habilidades y las agrega a la tabla.
+     */
     private void cargarTable(){
     List<Habilidades> habilidades = Habilidades.getAll();
     DefaultTableModel modeloTable = (DefaultTableModel) tblHabilidades.getModel();

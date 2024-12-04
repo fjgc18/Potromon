@@ -171,13 +171,28 @@ public class EntrenadorListado extends javax.swing.JFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
-
+    /**
+     * Maneja el evento de acción del botón "Agregar".
+     * Este método crea una nueva instancia de EntrenadorForm en modo modal
+     * (bloqueante) y la muestra al usuario. Después de que el formulario se cierra,
+     * se llama al método cargarTable() para actualizar la tabla de entrenadores.
+     *
+     * @param evt El evento de acción que se genera al presionar el botón.
+     */
     private void btnAgregarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAgregarActionPerformed
         EntrenadorForm form = new EntrenadorForm(this, true, 0);
         form.setVisible(true);
         cargarTable();
     }//GEN-LAST:event_btnAgregarActionPerformed
-
+    /**
+     * Maneja el evento de acción del botón "Editar".
+     * Este método obtiene la fila seleccionada en la tabla de entrenadores,
+     * extrae el ID del entrenador y crea una nueva instancia de EntrenadorForm
+     * en modo modal con el ID del entrenador seleccionado. Luego, muestra el formulario
+     * y actualiza la tabla de entrenadores después de que se cierra el formulario.
+     *
+     * @param evt El evento de acción que se genera al presionar el botón.
+     */
     private void btnEditarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEditarActionPerformed
         int renglon = tblEntrenadores.getSelectedRow();
         int idEntrenador = Integer.parseInt(tblEntrenadores.getModel().getValueAt(renglon, 0).toString());
@@ -188,7 +203,16 @@ public class EntrenadorListado extends javax.swing.JFrame {
         cargarTable();
 
     }//GEN-LAST:event_btnEditarActionPerformed
-
+    /**
+    * Maneja el evento de acción del botón "Eliminar".
+    * Este método obtiene la fila seleccionada en la tabla de entrenadores,
+    * extrae el ID del entrenador y muestra un cuadro de confirmación para
+    * eliminar el registro. Si el usuario confirma, intenta eliminar el registro
+    * y muestra un mensaje de éxito o error según corresponda. Finalmente,
+    * actualiza la tabla de entrenadores.
+    *
+    * @param evt El evento de acción que se genera al presionar el botón.
+    */
     private void btnEliminarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEliminarActionPerformed
         int renglon =tblEntrenadores.getSelectedRow();
         int idEntrenador = Integer.parseInt(tblEntrenadores.getModel().getValueAt(renglon, 0).toString());
@@ -213,7 +237,13 @@ public class EntrenadorListado extends javax.swing.JFrame {
 
         }
     }//GEN-LAST:event_btnEliminarActionPerformed
-
+    /**
+     * Maneja el evento de acción del botón "Potromon".
+     * Este método crea una nueva instancia de PotrodexListado y la muestra al usuario.
+     * Luego, cierra la ventana actual.
+     *
+     * @param evt El evento de acción que se genera al presionar el botón.
+     */
     private void btnPotromonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnPotromonActionPerformed
        PotrodexListado listado = new PotrodexListado();
        listado.setVisible(true);
@@ -222,7 +252,7 @@ public class EntrenadorListado extends javax.swing.JFrame {
 
     /**
      * Método principal para ejecutar la aplicación.
-     * 
+     * Muestra la ventana principal de EntrenadorListado
      * @param args Argumentos de línea de comandos.
      */
     public static void main(String args[]) {

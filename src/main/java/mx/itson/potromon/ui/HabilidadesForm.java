@@ -8,7 +8,8 @@ import javax.swing.JOptionPane;
 import mx.itson.potromon.entidades.Habilidades;
 
 /**
- *
+ * Clase que representa un formulario para registrar habilidades.
+ * Esta clase extiende JDialog y permite al usuario ingresar y editar habilidades.
  * @author bruns
  */
 public class HabilidadesForm extends javax.swing.JDialog {
@@ -16,7 +17,11 @@ public class HabilidadesForm extends javax.swing.JDialog {
     int idHabilidades;
 
     /**
-     * Creates new form HabilidadesForm
+     * Crea un nuevo formulario de habilidades.
+     *
+     * @param parent El marco padre del diálogo.
+     * @param modal Indica si el diálogo es modal.
+     * @param idEntrenador El ID del entrenador asociado a las habilidades.
      */
     public HabilidadesForm(java.awt.Frame parent, boolean modal, int idEntrenador) {
         super(parent, modal);
@@ -210,7 +215,12 @@ public class HabilidadesForm extends javax.swing.JDialog {
     private void txtHabilidadesUnoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtHabilidadesUnoActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_txtHabilidadesUnoActionPerformed
-
+    /**
+     * Maneja el evento de acción del botón "Aceptar".
+     * Este método guarda o edita las habilidades según el ID.
+     *
+     * @param evt El evento de acción que se genera al presionar el botón.
+     */
     private void btnAceptarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAceptarActionPerformed
 
     String habilidadesUno = txtHabilidadesUno.getText();
